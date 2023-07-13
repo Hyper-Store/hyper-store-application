@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     user-select: none;
-    font-family: 'Gotham';
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   body {
@@ -29,24 +29,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
-    font-family: 'Zona Pro';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Zona Pro'), url('../fonts/public/ZonaPro-Bold.otf') format('otf');
-  }
-
-  @font-face {
     font-family: 'AXIS';
     font-style: normal;
     font-weight: normal;
     src: local('AXIS'), url('../fonts/public/Axis Extrabold.otf') format('otf');
-  }
-
-  @font-face {
-    font-family: 'Gotham';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Gotham'), url('../fonts/public/GothamBold.ttf') format('ttf');
   }
 
   a {

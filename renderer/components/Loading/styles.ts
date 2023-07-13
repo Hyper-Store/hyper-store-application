@@ -7,6 +7,7 @@ export const LoadingStyled = styled.div`
     gap: 0.5rem;
     width: 100%;
     height: calc( 100vh - 130px);
+    font-family: 'AXIS';
     font-size: 1.1rem;
     font-weight: bold;
 `
