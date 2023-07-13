@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
-import { Form } from '../@shared/Form';
-import { Section } from '../@shared/Section';
-import { MdEmail } from 'react-icons/md';
-import { Header } from '../@shared/Header';
-import { toast } from 'react-hot-toast';
-import axios from 'axios';
+import { Form } from '../@shared/components/Form';
+import { Section } from '../@shared/components/Section';
+import { Header } from '../@shared/components/Header';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { PasswordValidator } from '../@shared/validators';
+import { useRouter } from 'next/router';
 
 export default function AuthLoginPage() {
 
-    const { handleSubmit, control, formState: { errors, isLoading }, } = useForm();
+    const { handleSubmit, control, formState: { errors, isSubmitting }, } = useForm();
+
+    const { push } = useRouter();
+
+    const onSubmit = handleSubmit(async (data) => {
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve('a');
+                toast.success('Logado com sucesso!')
+                push('/dashboard/main')
+            }, 2000);
+        });
+    })
 
     return (
         <Section>
@@ -17,16 +30,20 @@ export default function AuthLoginPage() {
                 <Header.Title>Fazer login</Header.Title>
                 <Header.Description>Faça seu login na plataforma para continuar...</Header.Description>
             </Header.Root>
-            <Form.Control>
-                <Form.Label htmlFor='email'>Usuário ou Email</Form.Label>
-                <Form.Input type='text' name='email' id='email' control={control} />
-            </Form.Control>
-            <Form.Control>
-                <Form.Label htmlFor='password'>Senha</Form.Label>
-                <Form.InputPassword id='password' name='password' control={control} />
-                <Form.Link href="/auth/register">Ainda não tenho uma conta, Criar nova conta</Form.Link>
-            </Form.Control>
-            <Form.Button isLoading={isLoading}>Fazer login</Form.Button>
+            <Form.Root onSubmit={onSubmit}>
+                <Form.Control>
+                    <Form.Label htmlFor='emailorusername'>Nome de Usuário</Form.Label>
+                    <Form.Input disabled={isSubmitting} type='text' name='emailorusername' id='emailorusername' control={control} rules={{ required: { value: true, message: "E-mail ou nome de usuário é obrigatório" } }} />
+                    {errors.emailorusername && (<Form.Error>{errors.emailorusername?.message as string}</Form.Error>)}
+                </Form.Control>
+                <Form.Control>
+                    <Form.Label htmlFor='password'>Senha</Form.Label>
+                    <Form.InputPassword disabled={isSubmitting} id='password' name='password' control={control} rules={PasswordValidator} />
+                    {errors.password && (<Form.Error>{errors.password?.message as string}</Form.Error>)}
+                    <Form.Link href="/auth/login">Já tenho uma conta, Fazer login</Form.Link>
+                </Form.Control>
+                <Form.Button isLoading={isSubmitting}>Fazer login</Form.Button>
+            </Form.Root>
         </Section>
     )
 };

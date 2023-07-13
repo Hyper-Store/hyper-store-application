@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
   * {
     margin: 0;
@@ -15,34 +16,37 @@ export const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.texts.title};
     overflow: hidden;
     background-color: ${props => props.theme.backgrounds.bgPrimary} !important;
+    border: 1px solid ${props => props.theme.borders.primary.color};
+    border-radius: ${props => props.theme.border_raidus};
+    height: 100vh;
   }
 
   @font-face {
     font-family: 'Winter Solstice';
     font-style: normal;
     font-weight: normal;
-    src: local('Winter Solstice'), url('/fonts/wintersolstice.woff') format('woff');
+    src: local('Winter Solstice'), url('..../fonts/public/public/wintersolstice.woff') format('woff');
   }
 
   @font-face {
     font-family: 'Zona Pro';
     font-style: normal;
     font-weight: normal;
-    src: local('Zona Pro'), url('/fonts/ZonaPro-Bold.otf') format('otf');
+    src: local('Zona Pro'), url('../fonts/public/ZonaPro-Bold.otf') format('otf');
   }
 
   @font-face {
     font-family: 'AXIS';
     font-style: normal;
     font-weight: normal;
-    src: local('AXIS'), url('/fonts/Axis Extrabold.otf') format('otf');
+    src: local('AXIS'), url('../fonts/public/Axis Extrabold.otf') format('otf');
   }
 
   @font-face {
     font-family: 'Gotham';
     font-style: normal;
     font-weight: normal;
-    src: local('Gotham'), url('/fonts/GothamBold.ttf') format('ttf');
+    src: local('Gotham'), url('../fonts/public/GothamBold.ttf') format('ttf');
   }
 
   a {

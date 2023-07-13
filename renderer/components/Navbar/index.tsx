@@ -1,13 +1,14 @@
+import { app } from "electron";
 import { NavBarButtonStyled, NavBarLeftStyled, NavBarLogoStyled, NavBarRightStyled, NavBarStyled } from "./styles"
 
 export const NavBar = () => {
 
     const handleMinimize = async () => {
-        // window.Main.minimize()
+
     };
 
     const handleClose = () => {
-        // window.Main.close()
+        window.close()
     }
 
     return (

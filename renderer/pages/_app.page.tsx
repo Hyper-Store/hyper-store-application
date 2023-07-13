@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import "bootstrap/dist/css/bootstrap.css";
+import 'react-tooltip/dist/react-tooltip.css'
 import { AppProps } from 'next/app';
 import { Loading } from '../components/Loading';
 import { ThemeProvider } from '../context/ThemeProvider.context';
 import { NavBar } from '../components/Navbar';
 import { GlobalStyle } from '../styles/globals';
-import "bootstrap/dist/css/bootstrap.css";
 import { Container } from '../components/Container';
 import { Router } from 'next/router';
 import { ToastContainer } from '../components/ToastContainer';

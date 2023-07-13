@@ -9,12 +9,14 @@ export default {
         white: '#fff',
         red: '#ff0000',
         green: '#00ff00',
-        purple: '#6a3ce2'
+        purple: '#6a3ce2',
+        black: '#000',
+        yellow: '#e1b538'
     },
     backgrounds: {
         bgPrimary: '#121214',
         bgSecondary: '#1F1F21',
-        bgDark: '#1D1D20',
+        bgDark: '#0D0D0F',
     },
     dropshadows: {
         secondary: "#0404051a"

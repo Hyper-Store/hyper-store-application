@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Form } from '../@shared/Form';
-import { Section } from '../@shared/Section';
-import { Header } from '../@shared/Header';
+import { Form } from '../@shared/components/Form';
+import { Section } from '../@shared/components/Section';
+import { Header } from '../@shared/components/Header';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { EmailValidator, PasswordValidator, UsernameValidator } from './validators';
+import { EmailValidator, PasswordValidator, UsernameValidator } from '../@shared/validators';
 
 export default function AuthLoginPage() {
     const { handleSubmit, control, formState: { errors, isSubmitting }, } = useForm();
