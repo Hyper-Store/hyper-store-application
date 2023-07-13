@@ -1,5 +1,5 @@
 import { BiSend } from "react-icons/bi"
-import { Form } from "../../../@shared/components/Form"
+import { Form } from "../../../../../components/Form";
 import { useForm } from "react-hook-form";
 
 export const RedeemKey = () => {

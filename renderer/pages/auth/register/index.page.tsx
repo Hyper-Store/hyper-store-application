@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from '../@shared/components/Form';
+import { Form } from '../../../components/Form';
 import { Section } from '../@shared/components/Section';
 import { Header } from '../@shared/components/Header';
 import { useForm } from 'react-hook-form';
