@@ -1,0 +1,12 @@
+appId: com.hyperstore.app
+productName: Hyper Store
+copyright: Copyright © 2023 Hyper Store
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null
