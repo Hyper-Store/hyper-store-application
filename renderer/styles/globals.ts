@@ -25,14 +25,14 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Winter Solstice';
     font-style: normal;
     font-weight: normal;
-    src: local('Winter Solstice'), url('..../fonts/public/public/wintersolstice.woff') format('woff');
+    src: local('Winter Solstice'), url('fonts/wintersolstice.woff') format('woff');
   }
 
   @font-face {
     font-family: 'AXIS';
     font-style: normal;
     font-weight: normal;
-    src: local('AXIS'), url('../fonts/public/Axis Extrabold.otf') format('otf');
+    src: local('AXIS'), url('fonts/Axis Extrabold.otf') format('otf');
   }
 
   a {
