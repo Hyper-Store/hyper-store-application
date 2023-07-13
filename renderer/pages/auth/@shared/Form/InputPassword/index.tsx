@@ -5,7 +5,7 @@ import { InputPasswordStyled } from "./styles"
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs"
 import { InputPasswordInput } from "./Input/index"
 
-type Props = InputProps & {}
+type Props = InputProps
 
 export const InputPassword = (props: Props) => {
 
@@ -16,13 +16,17 @@ export const InputPassword = (props: Props) => {
         setShow(!show)
     }
 
-    const handleFocus = () => {
-        setFocus(!focus)
+    const handleEnableFocus = () => {
+        setFocus(true)
+    }
+
+    const handleDisabledFocus = () => {
+        setFocus(false)
     }
 
     return (
         <InputPasswordStyled focus={focus}>
-            <InputPasswordInput {...props} type={show ? "password" : "text"} onFocus={handleFocus} onBlur={handleFocus} />
+            <InputPasswordInput {...props} type={show ? "password" : "text"} onFocus={handleEnableFocus} onBlur={handleDisabledFocus} onBlurCapture={handleDisabledFocus} />
             <InputPasswordButton onMouseDown={handleClick}>
                 {show && (<BsEyeFill />)}
                 {!show && (<BsEyeSlashFill />)}

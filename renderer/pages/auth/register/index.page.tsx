@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { Form } from '../@shared/Form';
 import { Section } from '../@shared/Section';
-import { MdEmail } from 'react-icons/md';
 import { Header } from '../@shared/Header';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
+import { EmailValidator, PasswordValidator, UsernameValidator } from './validators';
 
 export default function AuthLoginPage() {
-    const { register, handleSubmit, formState: { defaultValues, isLoading }, } = useForm();
+    const { handleSubmit, control, formState: { errors, isSubmitting }, } = useForm();
 
 
-    const onSubmit = handleSubmit((data) => {
-        console.log(data)
+    const onSubmit = handleSubmit(async (data) => {
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve('a');
+                toast.error('As credênciais estão inválidas, tente novamente!')
+            }, 2000);
+        });
     })
 
     return (
@@ -20,19 +27,22 @@ export default function AuthLoginPage() {
             </Header.Root>
             <Form.Root onSubmit={onSubmit}>
                 <Form.Control>
-                    <Form.Label htmlFor='name'>Nome de Usuário</Form.Label>
-                    <Form.Input type='text' name='name' id='name' {...register('name')} />
+                    <Form.Label htmlFor='username'>Nome de Usuário</Form.Label>
+                    <Form.Input disabled={isSubmitting} type='text' name='username' id='username' control={control} rules={UsernameValidator} />
+                    {errors.username && (<Form.Error>{errors.username?.message as string}</Form.Error>)}
                 </Form.Control>
                 <Form.Control>
                     <Form.Label htmlFor='email'>E-mail</Form.Label>
-                    <Form.Input type='email' name='email' id='email' {...register('email')} />
+                    <Form.Input disabled={isSubmitting} type='text' name='email' id='email' control={control} rules={EmailValidator} />
+                    {errors.email && (<Form.Error>{errors.email?.message as string}</Form.Error>)}
                 </Form.Control>
                 <Form.Control>
                     <Form.Label htmlFor='password'>Senha</Form.Label>
-                    <Form.InputPassword id='password' {...register('password')} />
+                    <Form.InputPassword disabled={isSubmitting} id='password' name='password' control={control} rules={PasswordValidator} />
+                    {errors.password && (<Form.Error>{errors.password?.message as string}</Form.Error>)}
                     <Form.Link href="/auth/login">Já tenho uma conta, Fazer login</Form.Link>
                 </Form.Control>
-                <Form.Button type='submit' isLoading={isLoading}>Criar conta</Form.Button>
+                <Form.Button type='submit' isLoading={isSubmitting}>Criar conta</Form.Button>
             </Form.Root>
         </Section >
     )

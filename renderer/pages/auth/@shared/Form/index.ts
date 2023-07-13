@@ -1,5 +1,6 @@
 import { Button } from "./Button";
 import { Control } from "./Control";
+import { Error } from "./Error";
 import { Input } from "./Input";
 import { InputGroup } from "./InputGroup";
 import { InputPassword } from "./InputPassword";
@@ -9,6 +10,7 @@ import { Root } from "./Root";
 
 export const Form = {
     Root: Root,
+    Error: Error,
     Control: Control,
     Input: Input,
     InputGroup: InputGroup,
