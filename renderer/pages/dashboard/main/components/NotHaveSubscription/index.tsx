@@ -1,7 +1,7 @@
 import { BiErrorCircle } from "react-icons/bi"
 import { DescriptionStyled, IconStyled, NotHaveSubscriptionStyled, TitleStyled } from "./styles"
 import { RedeemKey } from "../RedeemKey"
-import { Form } from "../../../@shared/components/Form"
+import { Form } from "../../../../../components/Form";
 
 export const NotHaveSubscription = () => {
     return (

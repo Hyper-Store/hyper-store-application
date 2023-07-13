@@ -40,7 +40,7 @@ export default function AuthLoginPage() {
                     <Form.Label htmlFor='password'>Senha</Form.Label>
                     <Form.InputPassword disabled={isSubmitting} id='password' name='password' control={control} rules={PasswordValidator} />
                     {errors.password && (<Form.Error>{errors.password?.message as string}</Form.Error>)}
-                    <Form.Link href="/auth/login">Já tenho uma conta, Fazer login</Form.Link>
+                    <Form.Link href="/auth/login">💚 Voltar para login</Form.Link>
                 </Form.Control>
                 <Form.Button type='submit' isLoading={isSubmitting}>Criar conta</Form.Button>
             </Form.Root>

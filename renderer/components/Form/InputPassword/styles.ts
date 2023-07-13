@@ -12,7 +12,6 @@ export const InputPasswordStyled = styled.div<InputPasswordStyledProps>`
     border-radius: 8px;
     border: 1px solid ${props => props.theme.borders.primary.color};
     transition: box-shadow 0.35s ease;
-    margin-bottom: 8px;
 
     ${props => props.focus && `
         box-shadow: 0px 0px 0px 1px ${props.theme.colors.primary};
