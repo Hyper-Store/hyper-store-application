@@ -1,3 +1,7 @@
-import { } from 'axios';
+import Axios from 'axios';
+import 'dotenv/config';
 
-const axios = Axios.create()
+export const axios = Axios.create({
+    baseURL: 'http://localhost:5000',
+    validateStatus: (status) => true
+})

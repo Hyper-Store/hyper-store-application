@@ -3,18 +3,23 @@ import { Form } from '../../../components/Form';
 import { Section } from '../@shared/components/Section';
 import { Header } from '../@shared/components/Header';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 import { PasswordValidator } from '../@shared/validators';
 import { useRouter } from 'next/router';
+import { LoginService, LoginServiceProps } from './services/login.service';
 
 export default function AuthLoginPage() {
 
-    const { handleSubmit, control, formState: { errors, isSubmitting }, } = useForm();
+    const { handleSubmit, control, setError, formState: { errors, isSubmitting }, } = useForm();
 
     const { push } = useRouter();
 
-    const onSubmit = handleSubmit(async (data) => {
+    const onSubmit = handleSubmit(async (data: LoginServiceProps) => {
+        const request = await LoginService(data);
 
+        console.log(request)
+        // if (request.data.name === "InvalidCredentialsError") {
+        //     setError('emailOrUsername', { type: 'value', message: 'E-mail ou nome de usuário inválidos' })
+        // }
     })
 
     return (
@@ -25,9 +30,9 @@ export default function AuthLoginPage() {
             </Header.Root>
             <Form.Root onSubmit={onSubmit}>
                 <Form.Control>
-                    <Form.Label htmlFor='emailorusername'>Nome de Usuário</Form.Label>
-                    <Form.Input disabled={isSubmitting} type='text' name='emailorusername' id='emailorusername' control={control} rules={{ required: { value: true, message: "E-mail ou nome de usuário é obrigatório" } }} />
-                    {errors.emailorusername && (<Form.Error>{errors.emailorusername?.message as string}</Form.Error>)}
+                    <Form.Label htmlFor='emailOrUsername'>E-mail ou Nome de usuário</Form.Label>
+                    <Form.Input disabled={isSubmitting} type='text' name='emailOrUsername' id='emailOrUsername' control={control} rules={{ required: { value: true, message: "E-mail ou nome de usuário é obrigatório" } }} />
+                    {errors.emailorusername && (<Form.Error>{errors.emailOrUsername?.message as string}</Form.Error>)}
                 </Form.Control>
                 <Form.Control>
                     <Form.Label htmlFor='password'>Senha</Form.Label>
