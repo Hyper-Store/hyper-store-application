@@ -15,13 +15,6 @@ export default function AuthLoginPage() {
 
     const onSubmit = handleSubmit(async (data) => {
 
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve('a');
-                toast.success('Logado com sucesso!')
-                push('/dashboard/main')
-            }, 2000);
-        });
     })
 
     return (

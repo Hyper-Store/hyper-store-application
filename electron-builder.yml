@@ -4,11 +4,13 @@ copyright: Copyright © 2023 Hyper Store
 directories:
   output: dist
   buildResources: resources
+
 files:
   - from: .
     filter:
       - package.json
       - app
+
 publish:
   provider: github
   releaseType: draft

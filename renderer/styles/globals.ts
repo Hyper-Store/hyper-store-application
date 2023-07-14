@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${props => props.theme.backgrounds.bgPrimary} !important;
     border: 1px solid ${props => props.theme.borders.primary.color};
     border-radius: ${props => props.theme.border_raidus};
+    width: 100vw;
     height: 100vh;
   }
 
