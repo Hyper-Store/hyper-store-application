@@ -7,6 +7,6 @@ type ContainerProps = {
 
 export const Container = ({ children }: ContainerProps) => {
     return (
-        <ContainerStyled children={children} />
+        <ContainerStyled children={children} style={{ maxWidth: '95% !important', width: '100% !important' }} />
     )
 }

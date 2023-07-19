@@ -1,4 +1,5 @@
 import { SiValorant, SiFivem, SiTraefikproxy, SiHomeadvisor } from "react-icons/si"
+import { IoSettingsSharp } from 'react-icons/io5';
 import { ReactNode } from 'react';
 import { SideBarItemStyled, SideBarListStyled, SideBarStyled } from "./styles"
 import { Tooltip } from "../../../../../components/Tooltip";
@@ -25,15 +26,15 @@ export const SideBar = (props: SideBarProps) => {
             icon: <SiHomeadvisor />,
             title: 'Início',
             selected: false,
-            redirectURL: '/auth/login',
+            redirectURL: '/dashboard/main',
             disabled: false
         },
         {
             icon: <SiFivem />,
             title: 'Rockstar (FIVEM)',
             selected: false,
-            redirectURL: '/auth/login',
-            disabled: true
+            redirectURL: '/dashboard/rockstar',
+            disabled: false
         },
         {
             icon: <SiValorant />,
@@ -48,6 +49,13 @@ export const SideBar = (props: SideBarProps) => {
             selected: false,
             redirectURL: '/auth/login',
             disabled: true
+        },
+        {
+            icon: <IoSettingsSharp />,
+            title: 'Configurações',
+            selected: false,
+            redirectURL: '/dashboard/settings',
+            disabled: false
         }
     ]
 

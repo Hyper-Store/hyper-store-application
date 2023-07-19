@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import { Form } from '../../../components/Form';
-import { Section } from '../@shared/components/Section';
-import { Header } from '../@shared/components/Header';
 import { useForm } from 'react-hook-form';
-import { PasswordValidator } from '../@shared/validators';
 import { useRouter } from 'next/router';
 import { LoginService, LoginServiceProps } from './services/login.service';
 import toast from 'react-hot-toast';
+import { LoginLayout } from './layout';
 
 export default function AuthLoginPage() {
 
@@ -42,25 +38,6 @@ export default function AuthLoginPage() {
     })
 
     return (
-        <Section>
-            <Header.Root>
-                <Header.Title>Fazer login</Header.Title>
-                <Header.Description>Faça seu login na plataforma para continuar...</Header.Description>
-            </Header.Root>
-            <Form.Root onSubmit={onSubmit}>
-                <Form.Control>
-                    <Form.Label htmlFor='emailOrUsername'>E-mail ou Nome de usuário</Form.Label>
-                    <Form.Input disabled={isSubmitting} type='text' name='value' id='value' control={control} rules={{ required: { value: true, message: "E-mail ou nome de usuário é obrigatório" } }} />
-                    {errors.value && (<Form.Error>{errors.value?.message as string}</Form.Error>)}
-                </Form.Control>
-                <Form.Control>
-                    <Form.Label htmlFor='password'>Senha</Form.Label>
-                    <Form.InputPassword disabled={isSubmitting} id='password' name='password' control={control} rules={PasswordValidator} />
-                    {errors.password && (<Form.Error>{errors.password?.message as string}</Form.Error>)}
-                    <Form.Link href="/auth/register">💚 Criar nova conta</Form.Link>
-                </Form.Control>
-                <Form.Button isLoading={isSubmitting}>Fazer login</Form.Button>
-            </Form.Root>
-        </Section>
+        <LoginLayout onSubmit={onSubmit} control={control} errors={errors} isSubmitting={isSubmitting} />
     )
 };

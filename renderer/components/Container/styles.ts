@@ -3,5 +3,5 @@ import { Container } from 'react-bootstrap';
 
 export const ContainerStyled = styled(Container)`
     max-width: 95% !important;
-    width: 100%;
+    width: 100% !important;
 `

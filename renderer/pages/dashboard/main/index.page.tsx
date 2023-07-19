@@ -6,7 +6,6 @@ import { NotHaveSubscription } from "./components/NotHaveSubscription";
 export default function DashboardMain() {
     return (
         <>
-
             <BaseDashboard selected={0}>
                 <NotHaveSubscription />
             </BaseDashboard>

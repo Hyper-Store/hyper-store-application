@@ -31,8 +31,8 @@ export const SideBarItemStyled = styled.li<SideBarItemStyledProps>`
     background: ${props => props.theme.backgrounds.bgSecondary};
     border-radius: ${props => props.theme.border_raidus};
     border-left: 2px solid transparent;
-    font-weight: 600;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Russo One';
+    font-size: 0.875rem;
     color: ${props => props.theme.texts.description};
     cursor: pointer;
 
