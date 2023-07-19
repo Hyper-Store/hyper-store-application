@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     user-select: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   body {
@@ -20,22 +20,8 @@ export const GlobalStyle = createGlobalStyle`
     height: 100vh;
   }
 
-  @font-face {
-    font-family: 'Winter Solstice';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Winter Solstice'), url('/fonts/wintersolstice.ttf') format('ttf');
-  }
-
-  @font-face {
-    font-family: 'AXIS';
-    font-style: normal;
-    font-weight: normal;
-    src: local('AXIS'), url('/fonts/axis-extrabold.otf') format('otf');
-  }
-
   a {
-    font-family: 'AXIS';
+    font-family: 'Russo One';
     color: ${props => props.theme.colors.primary};
     font-size: 0.750rem;
     opacity: 0.7; 

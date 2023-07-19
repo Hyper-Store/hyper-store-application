@@ -9,7 +9,7 @@ export const ButtonStyled = styled.button`
     border-radius: 8px;
     background: ${props => props.theme.buttons.primary.background};
     color: ${props => props.theme.buttons.primary.color};
-    font-family: 'AXIS';
+    font-family: 'Russo One';
     transition: background 0.3s ease;
     display: flex;
     align-items: center;

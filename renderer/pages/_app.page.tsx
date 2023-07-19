@@ -11,6 +11,7 @@ import { GlobalStyle } from '../styles/globals';
 import { Container } from '../components/Container';
 import { Router } from 'next/router';
 import { ToastContainer } from '../components/ToastContainer';
+import Head from 'next/head';
 
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -27,14 +28,19 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     }, [])
 
     return (
-        <ThemeProvider>
-            <Container>
-                <ToastContainer />
-                <NavBar />
-                <GlobalStyle />
-                {loading && (<Loading />)}
-                {!loading && (<Component {...pageProps} />)}
-            </Container>
-        </ThemeProvider>
+        <>
+            <Head>
+                <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Russo+One&display=swap" rel="stylesheet" />
+            </Head>
+            <ThemeProvider>
+                <Container>
+                    <ToastContainer />
+                    <NavBar />
+                    <GlobalStyle />
+                    {loading && (<Loading />)}
+                    {!loading && (<Component {...pageProps} />)}
+                </Container>
+            </ThemeProvider>
+        </>
     )
 }

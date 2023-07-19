@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
 
 export const LabelStyled = styled.label`
-    font-family: 'AXIS';
+    font-family: 'Russo One';
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 500;
     color: ${props => props.theme.texts.description};
     text-transform: uppercase;
     display: flex;

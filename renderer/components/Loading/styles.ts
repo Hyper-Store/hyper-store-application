@@ -7,9 +7,9 @@ export const LoadingStyled = styled.div`
     gap: 0.5rem;
     width: 100%;
     height: calc( 100vh - 130px);
-    font-family: 'AXIS';
+    font-family: 'Russo One';
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 500;
 `
 
 export const SpinnerStyled = styled.span`
