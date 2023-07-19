@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { PasswordValidator } from '../@shared/validators';
 import { useRouter } from 'next/router';
 import { LoginService, LoginServiceProps } from './services/login.service';
+import toast from 'react-hot-toast';
 
 export default function AuthLoginPage() {
 
@@ -14,12 +15,30 @@ export default function AuthLoginPage() {
     const { push } = useRouter();
 
     const onSubmit = handleSubmit(async (data: LoginServiceProps) => {
-        const request = await LoginService(data);
 
-        console.log(request)
-        // if (request.data.name === "InvalidCredentialsError") {
-        //     setError('emailOrUsername', { type: 'value', message: 'E-mail ou nome de usuário inválidos' })
-        // }
+        try {
+            const request = await LoginService(data);
+
+            if (request.status === 200) {
+                toast.success('Logado com sucesso sucesso, estamos te rendirecionando para outra página!', { duration: 10000 })
+
+                await push('/dashboard/main');
+                return;
+            }
+
+            if (request.data.error.name === "InvalidCredentialsError") {
+                setError('value', { type: 'value', message: 'As credênciais estão incorretas, tente novamente!' })
+                setError('password', { type: 'value', message: 'A senha não corresponde' })
+                return;
+            }
+
+            if (request.status !== 201 && !request.data?.error) {
+                toast.error(`O servidor retornou um erro do codigo ${request.status}`)
+                return;
+            }
+        } catch (error) {
+            toast.error(`Houve um erro no sevidor, tente novamente mais tarde! Codigo de erro: ${error.message}`)
+        }
     })
 
     return (
@@ -31,8 +50,8 @@ export default function AuthLoginPage() {
             <Form.Root onSubmit={onSubmit}>
                 <Form.Control>
                     <Form.Label htmlFor='emailOrUsername'>E-mail ou Nome de usuário</Form.Label>
-                    <Form.Input disabled={isSubmitting} type='text' name='emailOrUsername' id='emailOrUsername' control={control} rules={{ required: { value: true, message: "E-mail ou nome de usuário é obrigatório" } }} />
-                    {errors.emailorusername && (<Form.Error>{errors.emailOrUsername?.message as string}</Form.Error>)}
+                    <Form.Input disabled={isSubmitting} type='text' name='value' id='value' control={control} rules={{ required: { value: true, message: "E-mail ou nome de usuário é obrigatório" } }} />
+                    {errors.value && (<Form.Error>{errors.value?.message as string}</Form.Error>)}
                 </Form.Control>
                 <Form.Control>
                     <Form.Label htmlFor='password'>Senha</Form.Label>
