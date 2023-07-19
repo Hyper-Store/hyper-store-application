@@ -33,4 +33,9 @@ export const GlobalStyle = createGlobalStyle`
       opacity: 1; 
     }
   }
+
+  code {
+    color: ${props => props.theme.colors.primary};
+    font-weight: 300;
+  }
 `

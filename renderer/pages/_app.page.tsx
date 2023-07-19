@@ -13,6 +13,7 @@ import { Router } from 'next/router';
 import { ToastContainer } from '../components/ToastContainer';
 import Head from 'next/head';
 import { EventProvider } from '../context/EventProvider.context';
+import { ModalDialog } from './dashboard/@shared/components/ModalDialog';
 
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -39,6 +40,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                         <ToastContainer />
                         <NavBar />
                         <GlobalStyle />
+                        <ModalDialog />
                         {loading && (<Loading />)}
                         {!loading && (<Component {...pageProps} />)}
                     </Container>
