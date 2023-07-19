@@ -5,6 +5,8 @@ import { Form } from '../../../../components/Form';
 import { Section } from '../../@shared/components/Section';
 import { Header } from '../../@shared/components/Header';
 import { EmailValidator, PasswordValidator, UsernameValidator } from '../../@shared/validators';
+import { BiLockAlt, BiUser } from "react-icons/bi";
+import { MdEmail } from "react-icons/md";
 
 type Props = {
     onSubmit: (e?: BaseSyntheticEvent<object, any, any>) => Promise<void>,
@@ -21,18 +23,15 @@ export const RegisterLayout = ({ onSubmit, control, errors, isSubmitting }: Prop
             </Header.Root>
             <Form.Root onSubmit={onSubmit}>
                 <Form.Control>
-                    <Form.Label htmlFor='username'>Nome de Usuário</Form.Label>
-                    <Form.Input disabled={isSubmitting} type='text' name='username' id='username' control={control} rules={UsernameValidator} />
+                    <Form.InputGroup icon={<BiUser />} placeholder="Nome de usuário" disabled={isSubmitting} type='text' name='username' id='username' control={control} rules={UsernameValidator} />
                     {errors.username && (<Form.Error>{errors.username?.message as string}</Form.Error>)}
                 </Form.Control>
                 <Form.Control>
-                    <Form.Label htmlFor='email'>E-mail</Form.Label>
-                    <Form.Input disabled={isSubmitting} type='text' name='email' id='email' control={control} rules={EmailValidator} />
+                    <Form.InputGroup icon={<MdEmail />} placeholder="Endereço de e-mail" disabled={isSubmitting} type='text' name='email' id='email' control={control} rules={EmailValidator} />
                     {errors.email && (<Form.Error>{errors.email?.message as string}</Form.Error>)}
                 </Form.Control>
                 <Form.Control>
-                    <Form.Label htmlFor='password'>Senha</Form.Label>
-                    <Form.InputPassword disabled={isSubmitting} id='password' name='password' control={control} rules={PasswordValidator} />
+                    <Form.InputGroup icon={<BiLockAlt />} type="password" placeholder="Senha" disabled={isSubmitting} id='password' name='password' control={control} rules={PasswordValidator} />
                     {errors.password && (<Form.Error>{errors.password?.message as string}</Form.Error>)}
                     <Form.Link href="/auth/login">💚 Voltar para login</Form.Link>
                 </Form.Control>

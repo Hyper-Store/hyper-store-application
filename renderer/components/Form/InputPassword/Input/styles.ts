@@ -6,4 +6,8 @@ export const InputPasswordInputStyled = styled(Input)`
     box-shadow: none !important;
     margin-bottom: 0;
     padding-right: 0;
+
+    &::placeholder {
+        color: ${props => props.theme.texts.title};
+    }
 `

@@ -8,26 +8,12 @@ import { InputPasswordInput } from "./Input/index"
 type Props = InputProps
 
 export const InputPassword = (props: Props) => {
-
-    const [focus, setFocus] = useState<boolean>(false);
     const [show, setShow] = useState<boolean>(true);
 
-    const handleClick = () => {
-        setShow(!show)
-    }
-
-    const handleEnableFocus = () => {
-        setFocus(true)
-    }
-
-    const handleDisabledFocus = () => {
-        setFocus(false)
-    }
-
     return (
-        <InputPasswordStyled focus={focus}>
-            <InputPasswordInput {...props} type={show ? "password" : "text"} onFocus={handleEnableFocus} onBlur={handleDisabledFocus} onBlurCapture={handleDisabledFocus} />
-            <InputPasswordButton onMouseDown={handleClick}>
+        <InputPasswordStyled>
+            <InputPasswordInput {...props} type={show ? "password" : "text"} />
+            <InputPasswordButton>
                 {show && (<BsEyeFill />)}
                 {!show && (<BsEyeSlashFill />)}
             </InputPasswordButton>

@@ -4,6 +4,8 @@ import { Form } from '../../../../components/Form';
 import { Section } from '../../@shared/components/Section';
 import { Header } from '../../@shared/components/Header';
 import { Control, FieldErrors, FieldValues } from 'react-hook-form';
+import { BiLockAlt } from 'react-icons/bi';
+import { MdEmail } from 'react-icons/md';
 
 type Props = {
     onSubmit: (e?: BaseSyntheticEvent<object, any, any>) => Promise<void>,
@@ -21,13 +23,11 @@ export const LoginLayout = ({ onSubmit, control, errors, isSubmitting }: Props) 
             </Header.Root>
             <Form.Root onSubmit={onSubmit}>
                 <Form.Control>
-                    <Form.Label htmlFor='emailOrUsername'>E-mail ou Nome de usuário</Form.Label>
-                    <Form.Input disabled={isSubmitting} type='text' name='value' id='value' control={control} rules={{ required: { value: true, message: "E-mail ou nome de usuário é obrigatório" } }} />
+                    <Form.InputGroup icon={<MdEmail />} placeholder='Email ou nome de usuário' disabled={isSubmitting} type='text' name='value' id='value' control={control} rules={{ required: { value: true, message: "E-mail ou nome de usuário é obrigatório" } }} />
                     {errors.value && (<Form.Error>{errors.value?.message as string}</Form.Error>)}
                 </Form.Control>
                 <Form.Control>
-                    <Form.Label htmlFor='password'>Senha</Form.Label>
-                    <Form.InputPassword disabled={isSubmitting} id='password' name='password' control={control} rules={PasswordValidator} />
+                    <Form.InputGroup icon={<BiLockAlt />} type='password' placeholder='Senha' disabled={isSubmitting} id='password' name='password' control={control} rules={PasswordValidator} />
                     {errors.password && (<Form.Error>{errors.password?.message as string}</Form.Error>)}
                     <Form.Link href="/auth/register">💚 Criar nova conta</Form.Link>
                 </Form.Control>

@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { Input } from "../Input";
+import { InputPassword } from "../InputPassword";
 
 export const InputGroupStyled = styled.div`
     width: 100%;
@@ -20,7 +21,12 @@ export const InputGroupStyled = styled.div`
 
 export const InputGroupLabelStyled = styled.label``
 export const InputGroupInputStyled = styled(Input)`
+    box-shadow: none !important;
     border: none !important;
     outline: none;
     margin: 0;
+
+    &::placeholder {
+        color: ${props => props.theme.texts.title};
+    }
 `
