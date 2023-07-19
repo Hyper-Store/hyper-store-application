@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BaseDashboard } from "../@shared/components/BaseDashboard";
 import { Header } from "../@shared/components/Header";
 import { ConfirmDialog } from "../@shared/components/ConfirmDialog";
+import { GenerateAccount } from "../@shared/components/GenerateAccount";
 
 export default function DashboardRockstar() {
 
@@ -16,6 +17,8 @@ export default function DashboardRockstar() {
                     title="Gerar conta rockstar"
                     description={<>Você realmente deseja <b>gerar uma nova</b>, isto pode reduzir a quantidade de contas disponíveis para gerar hoje!</>}
                     onClose={() => { setShow(false) }} />
+
+                <GenerateAccount service="rockstar" />
             </BaseDashboard>
         </>
     )
