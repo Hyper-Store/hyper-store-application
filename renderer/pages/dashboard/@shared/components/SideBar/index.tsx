@@ -40,8 +40,8 @@ export const SideBar = (props: SideBarProps) => {
             icon: <SiValorant />,
             title: 'Gerador valorant',
             selected: false,
-            redirectURL: '/auth/login',
-            disabled: true
+            redirectURL: '/dashboard/valorant',
+            disabled: false
         },
         {
             icon: <SiTraefikproxy />,

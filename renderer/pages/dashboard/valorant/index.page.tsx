@@ -5,24 +5,24 @@ import { ConfirmDialog } from "../@shared/components/ConfirmDialog";
 import { GenerateAccount } from "../@shared/components/GenerateAccount";
 import { EventProviderContext } from "../../../context/EventProvider.context";
 
-export default function DashboardRockstar() {
+export default function DashboardValorant() {
 
     const [show, setShow] = useState(false);
     const { events } = useContext(EventProviderContext)
 
     return (
         <>
-            <BaseDashboard selected={1}>
-                <Header title="Gerador de contas rockstar" button={{ children: 'Gerar conta', onClick: () => { setShow(true) } }} />
+            <BaseDashboard selected={2}>
+                <Header title="Gerador de contas valorant" button={{ children: 'Gerar conta', onClick: () => { setShow(true) } }} />
                 <ConfirmDialog show={show}
                     type="confirm"
-                    title="Gerar conta rockstar"
+                    title="Gerar conta valorant"
                     description={<>Você realmente deseja <b>gerar uma nova</b>, isto pode reduzir a quantidade de contas disponíveis para gerar hoje!</>}
                     onClose={() => { setShow(false) }}
                     onSubmit={() => { events.emit('generateAccount') }}
                 />
 
-                <GenerateAccount service="rockstar" />
+                <GenerateAccount service="valorant" />
             </BaseDashboard>
         </>
     )

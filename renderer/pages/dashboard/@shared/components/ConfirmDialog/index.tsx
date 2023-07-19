@@ -13,6 +13,12 @@ type Props = {
 }
 
 export function ConfirmDialog(props: Props) {
+
+    const handleSubmit = () => {
+        props.onClose();
+        props.onSubmit();
+    }
+
     return (
         <>
             <ConfirmDialogStyled show={props.show} onHide={props.onClose} centered={true}>
@@ -21,7 +27,7 @@ export function ConfirmDialog(props: Props) {
                 <Description>{props.description}</Description>
                 <ButtonGroup>
                     <Button typeColor='primary' onClick={props.onClose}>Fechar</Button>
-                    <Button typeColor='danger' onClick={props.onSubmit}>
+                    <Button typeColor='danger' onClick={handleSubmit}>
                         {props.type === "confirm" && "Confirmar"}
                         {props.type === "delete" && "Deletar"}
                     </Button>

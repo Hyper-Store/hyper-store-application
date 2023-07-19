@@ -40,5 +40,4 @@ export const Description = styled.p`
     font-size: 0.85rem;
     font-family: 'Kanit';
     color: ${props => props.theme.texts.description};
-    margin: 0;
 `

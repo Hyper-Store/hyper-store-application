@@ -1,19 +1,49 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Modal } from "../Modal"
 import { Description, Title, SpinnerStyled, Icon } from "./styles"
-import { BiErrorCircle } from 'react-icons/bi';
+import { BiCopy, BiErrorCircle } from 'react-icons/bi';
 import { BsCheckCircle } from 'react-icons/bs';
+import { EventProviderContext } from "../../../../../context/EventProvider.context";
+import { Form } from "../../../../../components/Form";
+import { CopyContent } from "../../utils/copyContent";
 
 type Props = {
     service: "rockstar" | "valorant"
 }
 
 export const GenerateAccount = (props: Props) => {
-    const [status, setStatus] = useState<"idle" | "generating" | "error" | "generated">("generated");
+    const [show, setShow] = useState<boolean>(false);
+    const [account, setAccount] = useState<string>("");
+    const [status, setStatus] = useState<"idle" | "generating" | "error" | "generated">("idle");
 
+    const { events } = useContext(EventProviderContext)
+
+    useEffect(() => {
+        events.on('generateAccount', handleGenerateAccount);
+
+        return () => {
+            events.off('generateAccount', handleGenerateAccount);
+        };
+    }, []);
+
+    const handleGenerateAccount = () => {
+        setStatus("generating");
+        setShow(true);
+        setTimeout(() => {
+            setStatus("generated");
+            setAccount('contatodanielsilvaoficial@gmail.com:senhsenha');
+        }, 1500);
+    }
+
+    const handleCopy = () => {
+        CopyContent({
+            content: account,
+            message: 'A conta foi copiada com sucesso para sua área de transferência!'
+        })
+    }
 
     return (
-        <Modal show={status !== "idle"} centered={true}>
+        <Modal show={show} centered={true} onHide={() => { status !== "generating" && setShow(false) }}>
             {status === "generating" && (<>
                 <SpinnerStyled />
                 <Title>Generando a sua conta {props.service}...</Title>
@@ -29,7 +59,11 @@ export const GenerateAccount = (props: Props) => {
             {status === "generated" && (<>
                 <Icon type="success"><BsCheckCircle /></Icon>
                 <Title>Conta gerada com sucesso</Title>
-                <Description>Sua conta <b>{props.service}</b> foi gerada com sucesso, logo abaixo estão as informações de sua conta! Agora você possui apenas <b>25 contas</b> disponíveis para gerar hoje!</Description>
+                <Description>Sua conta <b>{props.service}</b> foi gerada com sucesso, logo abaixo estão as informações de sua conta!</Description>
+                <Form.InputButtonGroup>
+                    <Form.Input type="text" value={account} />
+                    <Form.Button onClick={handleCopy}><BiCopy /></Form.Button>
+                </Form.InputButtonGroup>
             </>)}
         </Modal>
     )
