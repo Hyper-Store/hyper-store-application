@@ -8,7 +8,7 @@ module.exports = {
 
     return config;
   },
-  pageExtensions: ["page.tsx"],
+  pageExtensions: ["page.tsx", "page.ts"],
   compiler: {
     styledComponents: true,
   },

@@ -1,4 +1,5 @@
-import { app } from 'electron';
+import { app, dialog } from 'electron';
+import 'dotenv/config';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 
@@ -42,6 +43,14 @@ if (isProd) {
     mainWindow.webContents.toggleDevTools()
   }
 })();
+
+app.on('ready', () => {
+  app.setName(process.env.PROJECT_NAME!)
+
+  if (app.isEmojiPanelSupported()) {
+    dialog.showErrorBox('Houve um erro', 'Pareçe que seu computador não possui suporte para emojis, pode haver alguns problemas de fontes em seu computador, para mais informações acesse: https://discord.gg/hRzyVVWW3U')
+  }
+})
 
 app.on('window-all-closed', () => {
   app.quit();
