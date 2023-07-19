@@ -18,6 +18,14 @@ export const Icon = styled.div < { type: "success" | "error" } > `
     svg {
         width: 35px;
         height: 35px;
+        animation: fade-in .3s ease;
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: scale(50%);
+        }
     }
 
     ${props => props.type === "success" && css`
