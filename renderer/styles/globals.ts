@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import css from 'styled-jsx/css'
 
 export const GlobalStyle = createGlobalStyle`
   * {

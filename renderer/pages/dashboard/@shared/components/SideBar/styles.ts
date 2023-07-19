@@ -32,12 +32,12 @@ export const SideBarItemStyled = styled.li<SideBarItemStyledProps>`
     border-radius: ${props => props.theme.border_raidus};
     border-left: 2px solid transparent;
     font-family: 'Russo One';
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     color: ${props => props.theme.texts.description};
     cursor: pointer;
 
     svg {
-        font-size: 1.4rem;
+        font-size: 1rem;
         margin: 0 10px;
     }
 

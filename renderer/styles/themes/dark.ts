@@ -8,10 +8,12 @@ export default {
         secondary: '#4EA8DE',
         white: '#fff',
         red: '#ff0000',
+        red_50: '#310000',
         green: '#00ff00',
         purple: '#6a3ce2',
         black: '#000',
-        yellow: '#e1b538'
+        yellow: '#e1b538',
+        orange: '#ff5e00',
     },
     backgrounds: {
         bgPrimary: '#121214',
@@ -59,6 +61,20 @@ export default {
             hover: {
                 color: "#ddd",
                 borderColor: "#ffffff33"
+            }
+        },
+        primaryDark: {
+            color: '#a3a3a3',
+            background: '#2E2E30',
+            hover: {
+                background: '#363638'
+            }
+        },
+        danger: {
+            color: '#fff',
+            background: '#FF4545',
+            hover: {
+                background: '#FF5F5F'
             }
         }
     },

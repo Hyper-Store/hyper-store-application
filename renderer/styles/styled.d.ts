@@ -9,10 +9,13 @@ declare module 'styled-components' {
             secondary: string,
             white: string,
             red: string,
+            red_50: string,
             green: string,
             purple: string,
             black: string,
-            yellow: string
+            yellow: string,
+            orange: string,
+            gray_200: string,
         },
         texts: {
             title: string,
@@ -62,6 +65,20 @@ declare module 'styled-components' {
                     borderColor: string
                 }
             },
+            primaryDark: {
+                color: string,
+                background: string,
+                hover: {
+                    background: string
+                }
+            },
+            danger: {
+                color: string,
+                background: string,
+                hover: {
+                    background: string
+                }
+            }
         },
         icons: {
             theme: {
