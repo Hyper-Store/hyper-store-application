@@ -20,7 +20,7 @@ export const NavBarLeftStyled = styled.div`
 
 export const NavBarLogoStyled = styled.p`
     color: ${props => props.theme.colors.primary};
-    font-family: 'Winter Solstice';
+    font-family: 'Russo One';
     font-size: 4rem;
     line-height: 3.5rem;
     margin-bottom: 0px;
