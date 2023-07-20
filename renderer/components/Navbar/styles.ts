@@ -16,14 +16,35 @@ export const NavBarLeftStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-`
+    `
 
 export const NavBarLogoStyled = styled.p`
     color: ${props => props.theme.colors.primary};
     font-family: 'Russo One';
-    font-size: 4rem;
+    font-size: 1rem;
     line-height: 3.5rem;
     margin-bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+
+    span {
+        font-weight: 500;
+        color: ${props => props.theme.texts.title};
+    }
+`
+
+export const BadgeStyled = styled.span`
+    color: ${props => props.theme.colors.primary} !important;
+    padding: 3px;
+    border: 1px solid ${props => props.theme.colors.primary};
+    font-size: 0.5rem;
+    border-radius: ${props => props.theme.border_raidus};
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 export const NavBarRightStyled = styled.div`

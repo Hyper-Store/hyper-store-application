@@ -1,5 +1,5 @@
 import { app } from "electron";
-import { NavBarButtonStyled, NavBarLeftStyled, NavBarLogoStyled, NavBarRightStyled, NavBarStyled } from "./styles"
+import { NavBarButtonStyled, NavBarLeftStyled, NavBarLogoStyled, NavBarRightStyled, NavBarStyled, BadgeStyled } from "./styles"
 
 export const NavBar = () => {
 
@@ -14,7 +14,7 @@ export const NavBar = () => {
     return (
         <NavBarStyled>
             <NavBarLeftStyled>
-                <NavBarLogoStyled>H</NavBarLogoStyled>
+                <NavBarLogoStyled>H <span>yper store</span> <BadgeStyled>PREMIUM</BadgeStyled></NavBarLogoStyled>
                 {/* <NavBarLogoStyled src={logo} width={1080} height={1080} alt="Hyper Store" /> */}
             </NavBarLeftStyled>
             <NavBarRightStyled>

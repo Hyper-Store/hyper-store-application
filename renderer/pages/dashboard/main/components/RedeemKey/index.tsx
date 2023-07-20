@@ -17,12 +17,13 @@ export const RedeemKey = () => {
     const { events } = useContext(EventProviderContext);
 
     useEffect(() => {
+        if (!socket) return () => { };
         socket.on('key-redeemed-success', ListenerRedeemKey);
 
         return () => {
             socket.off('key-redeemed-succes');
         };
-    }, [])
+    }, [socket]);
 
     const onSubmit = handleSubmit(async (data) => {
         setLoading(true);

@@ -1,29 +1,23 @@
 import { Header } from "../../../@shared/components/Header"
 import { HaveSubscriptionStyled, RowStyled, SectionStyled } from "./styles"
-import { SiFivem, SiValorant } from "react-icons/si"
 import { SignatureCard, SignatureCardProps } from "./SignatureCard"
 import { RedeemKey } from "../RedeemKey"
+import { SignatureType } from "../../types/Signature.type"
+import { IconsSignatures } from "../../../@shared/utils/iconsSignatures"
 
-export const HaveSubscription = () => {
+type Props = {
+    signatures: SignatureType[]
+}
 
-    const signatures: SignatureCardProps[] = [
-        {
-            icon: {
-                value: <SiFivem />,
-                color: '#f76d00'
-            },
-            title: 'Rockstar fivem',
-            expireIn: new Date()
-        },
-        {
-            icon: {
-                value: <SiValorant />,
-                color: '#f74452'
-            },
-            title: 'Valorant',
-            expireIn: new Date()
+export const HaveSubscription = ({ signatures }: Props) => {
+
+    const signaturesCard: SignatureCardProps[] = signatures.map(s => {
+        return {
+            icon: IconsSignatures(signatures, s.service.name),
+            title: s.service.name,
+            expireIn: new Date(s.expirationDate)
         }
-    ]
+    })
 
     return (
         <>
@@ -31,7 +25,7 @@ export const HaveSubscription = () => {
                 <SectionStyled>
                     <Header title="Assinaturas (ativas)" />
                     <RowStyled>
-                        {signatures.map((s, i) => (
+                        {signaturesCard.map((s, i) => (
                             <SignatureCard {...s} key={i} />
                         ))}
                     </RowStyled>
