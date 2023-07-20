@@ -1,9 +1,12 @@
 import { SiValorant, SiFivem, SiTraefikproxy, SiHomeadvisor } from "react-icons/si"
 import { IoSettingsSharp } from 'react-icons/io5';
-import { ReactNode } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import { SideBarItemStyled, SideBarListStyled, SideBarStyled } from "./styles"
 import { Tooltip } from "../../../../../components/Tooltip";
 import { useRouter } from "next/router";
+import { SocketWSProviderContext } from "../../context/SocketWS.context";
+import { SignatureType } from "../../../main/types/Signature.type";
+import { WSBinaryConverter } from "../../../../../utils/ws-binary-converter";
 
 export type SideBarItems = {
     icon: ReactNode,
@@ -21,7 +24,9 @@ export const SideBar = (props: SideBarProps) => {
 
     const { push } = useRouter();
 
-    const items: SideBarItems[] = [
+    const [signatures, setSignatures] = useState<SignatureType[]>([]);
+    const { socket } = useContext(SocketWSProviderContext);
+    const [items, setItems] = useState<SideBarItems[]>([
         {
             icon: <SiHomeadvisor />,
             title: 'Início',
@@ -34,14 +39,14 @@ export const SideBar = (props: SideBarProps) => {
             title: 'Rockstar (FIVEM)',
             selected: false,
             redirectURL: '/dashboard/rockstar',
-            disabled: false
+            disabled: true
         },
         {
             icon: <SiValorant />,
             title: 'Gerador valorant',
             selected: false,
             redirectURL: '/dashboard/valorant',
-            disabled: false
+            disabled: true
         },
         {
             icon: <SiTraefikproxy />,
@@ -58,8 +63,33 @@ export const SideBar = (props: SideBarProps) => {
             disabled: false
         }
     ]
+    );
 
-    items[props.selected].selected = true;
+    useEffect(() => {
+        if (!socket) return () => { };
+        socket.on('activated-signatures', ListenerSignaturesChanges);
+        socket.emit('retrieve-activated-signatures')
+
+        return () => {
+            socket.off('activated-signatures');
+        };
+    }, [socket]);
+
+    const ListenerSignaturesChanges = (message: BinaryData) => {
+        const data = WSBinaryConverter(message);
+        setSignatures(data);
+        setItems(getAllItems());
+    }
+
+    const getAllItems = () => {
+        items[props.selected].selected = true
+        if (signatures.find(s2 => s2.service.name === "Rockstar")) items[1].disabled = false
+        if (signatures.find(s2 => s2.service.name === "Valorant")) items[2].disabled = false
+
+        setItems(items)
+        return items;
+    }
+
 
     return (
         <SideBarStyled>
