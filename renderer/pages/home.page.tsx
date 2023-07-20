@@ -6,7 +6,7 @@ function Home() {
   const { push } = useRouter();
 
   useEffect(() => {
-    push('/dashboard/main')
+    push('/auth/login')
   }, [])
 
   return (
