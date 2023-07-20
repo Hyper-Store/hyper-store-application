@@ -17,18 +17,6 @@ import { ModalDialog } from './dashboard/@shared/components/ModalDialog';
 
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-    const [loading, setLoading] = useState(false);
-
-    const handleStopLoading = () => {
-        setTimeout(() => { setLoading(false) }, 500)
-    }
-
-    useEffect(() => {
-        Router.events.on('routeChangeStart', () => { setLoading(true) })
-        Router.events.on('routeChangeError', handleStopLoading);
-        Router.events.on('routeChangeComplete', handleStopLoading);
-    }, [])
-
     return (
         <>
             <Head>
@@ -41,8 +29,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                         <NavBar />
                         <GlobalStyle />
                         <ModalDialog />
-                        {loading && (<Loading />)}
-                        {!loading && (<Component {...pageProps} />)}
+                        <Loading />
+                        {<Component {...pageProps} />}
                     </Container>
                 </ThemeProvider>
             </EventProvider>

@@ -1,10 +1,7 @@
-import { LoadingStyled, SpinnerStyled } from "./styles"
+import NextNProgress from 'nextjs-progressbar';
 
 export const Loading = () => {
     return (
-        <LoadingStyled>
-            <SpinnerStyled />
-            Carregando...
-        </LoadingStyled>
+        <NextNProgress color="#42FDA3" />
     )
 }
