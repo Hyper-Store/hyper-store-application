@@ -5,10 +5,11 @@ import EventEmitter from "events";
 
 type Props = {
     events: EventEmitter
-    data: any
+    data: any,
+    setLoading: (loading: boolean) => void
 }
 
-export const RedeemKeyOnSubmit = async ({ events, data }: Props) => {
+export const RedeemKeyOnSubmit = async ({ events, data, setLoading }: Props) => {
     try {
         const request = await RedeemKeyService(data);
 
@@ -20,6 +21,7 @@ export const RedeemKeyOnSubmit = async ({ events, data }: Props) => {
                 title: 'Key não encontrada',
                 description: <>Esta key não existe ou não está mais disponível para o uso!</>
             } as ModalDialogProps)
+            setLoading(false);
         }
 
         if (request.data.error.name === "KeyNotActivatedError") {
@@ -28,6 +30,7 @@ export const RedeemKeyOnSubmit = async ({ events, data }: Props) => {
                 title: 'Key desativada',
                 description: <>Esta já foi resgatada por algum outro usuário, ou desativada pela administração!</>
             } as ModalDialogProps)
+            setLoading(false);
         }
 
         if (request.data.error.name === "SignatureAlreadyActiveError") {
@@ -36,9 +39,11 @@ export const RedeemKeyOnSubmit = async ({ events, data }: Props) => {
                 title: 'Houve um erro ao resgatar',
                 description: <>Ao tentar resgatar key indentificamos que você já possui uma assinatura com o mesmo serviço desta key, por isto não é possível resgatar novamente!</>
             } as ModalDialogProps)
+            setLoading(false);
         }
     } catch (error) {
         toast.error(`Houve um erro no sevidor, tente novamente mais tarde! Codigo de erro: ${error.message}`)
+        setLoading(false);
     }
 
     return (<></>)

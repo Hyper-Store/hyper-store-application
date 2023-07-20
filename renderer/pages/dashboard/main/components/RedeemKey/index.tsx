@@ -2,7 +2,7 @@ import { BiSend } from "react-icons/bi"
 import { Form } from "../../../../../components/Form";
 import { useForm } from "react-hook-form";
 import { KeyValidator } from "./validators";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SocketWSProviderContext } from "../../../@shared/context/SocketWS.context";
 import { WSBinaryConverter } from "../../../../../utils/ws-binary-converter";
 import { RedeemKeyOnSubmit } from "./events/onSubmit.event";
@@ -11,6 +11,7 @@ import { EventProviderContext } from "../../../../../context/EventProvider.conte
 
 export const RedeemKey = () => {
 
+    const [loading, setLoading] = useState(false);
     const { handleSubmit, control, formState: { errors, isSubmitting }, } = useForm();
     const { socket } = useContext(SocketWSProviderContext);
     const { events } = useContext(EventProviderContext);
@@ -24,12 +25,14 @@ export const RedeemKey = () => {
     }, [])
 
     const onSubmit = handleSubmit(async (data) => {
-        RedeemKeyOnSubmit({ events, data });
+        setLoading(true);
+        RedeemKeyOnSubmit({ events, data, setLoading });
     });
 
     const ListenerRedeemKey = (message: BinaryData) => {
         const data = WSBinaryConverter(message);
         RedemeedKey({ events, data });
+        setLoading(false);
     }
 
     return (
@@ -37,8 +40,8 @@ export const RedeemKey = () => {
             <Form.Root onSubmit={onSubmit}>
                 <Form.Control>
                     <Form.InputButtonGroup>
-                        <Form.Input disabled={isSubmitting} rules={KeyValidator} type="text" name="key" control={control} placeholder="Insira sua key" />
-                        <Form.Button isLoading={isSubmitting}><BiSend /></Form.Button>
+                        <Form.Input disabled={loading} rules={KeyValidator} type="text" name="key" control={control} placeholder="Insira sua key" />
+                        <Form.Button isLoading={loading}><BiSend /></Form.Button>
                     </Form.InputButtonGroup>
                     {errors.key && (<Form.Error>{errors.key.message as string}</Form.Error>)}
                 </Form.Control>
