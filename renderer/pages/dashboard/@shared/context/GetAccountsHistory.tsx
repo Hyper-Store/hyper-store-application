@@ -21,6 +21,7 @@ type AccountsHistoryProviderProps = {
 export const AccountsHistoryProvider = ({ children, signatureId }: AccountsHistoryProviderProps) => {
     const [accounts, setAccounts] = useState<AccountHistoryType[]>([])
     const [loading, setLoading] = useState<boolean>(true);
+    const [alreadyLimited, setAlreadyLimited] = useState<boolean>(false);
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     const { socket } = useContext(SocketWSProviderContext);
@@ -41,7 +42,8 @@ export const AccountsHistoryProvider = ({ children, signatureId }: AccountsHisto
 
     const ListenerAccountsHistory = (message: BinaryData) => {
         const data = WSBinaryConverter(message);
-        setAccounts([...data, ...accounts]);
+        if (data.length < 1) return setAlreadyLimited(true);
+        setAccounts([...accounts, ...data]);
         setLoading(false);
     }
 
@@ -59,6 +61,7 @@ export const AccountsHistoryProvider = ({ children, signatureId }: AccountsHisto
     }
 
     const nextCurrentPage = () => {
+        if (alreadyLimited) return;
         updateList();
         setCurrentPage(currentPage + 1);
     }

@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import { SectionStyled } from './styles';
 
-type Props = {
+type Props = HTMLAttributes<HTMLElement> & {
     children: ReactNode
 }
 
