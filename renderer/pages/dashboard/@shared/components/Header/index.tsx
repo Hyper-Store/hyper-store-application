@@ -1,16 +1,20 @@
 import { ButtonProps } from "../../../../../components/Form/Button"
-import { ButtonStyled, HeaderStyled, Title } from "./styles"
+import { ButtonStyled, Description, HeaderStyled, HeaderTop, Title } from "./styles"
 
 type HeaderProps = {
     title: string,
+    description?: string,
     button?: ButtonProps
 }
 
-export const Header = ({ title, button }: HeaderProps) => {
+export const Header = ({ title, description, button }: HeaderProps) => {
     return (
         <HeaderStyled>
-            <Title>{title}</Title>
-            {button && (<ButtonStyled {...button} />)}
+            <HeaderTop>
+                <Title>{title}</Title>
+                {button && (<ButtonStyled {...button} />)}
+            </HeaderTop>
+            <Description>{description}</Description>
         </HeaderStyled>
     )
 }

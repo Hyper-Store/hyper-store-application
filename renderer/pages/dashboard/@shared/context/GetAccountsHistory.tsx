@@ -40,7 +40,7 @@ export const AccountsHistoryProvider = ({ children, signatureId }: AccountsHisto
 
     const ListenerAccountsHistory = (message: BinaryData) => {
         const data = WSBinaryConverter(message);
-        if(accounts.includes(data)) return;
+        if (accounts.includes(data)) return;
         if (data.length < 1) return setAlreadyLimited(true);
         setAccounts(prevAccounts => [...prevAccounts, ...data]);
         setLoading(false);
@@ -58,7 +58,7 @@ export const AccountsHistoryProvider = ({ children, signatureId }: AccountsHisto
         setCurrentPage(currentPage - 1);
         updateList();
     }
-    
+
     const nextCurrentPage = () => {
         if (alreadyLimited) return;
         setCurrentPage(currentPage + 1);

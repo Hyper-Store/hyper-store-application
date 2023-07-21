@@ -9,7 +9,8 @@ import { GenerateAccount } from "../../@shared/components/GenerateAccount";
 import { AccountsHistory } from "../../@shared/components/AccountsHistory";
 import { SiFivem } from "react-icons/si";
 import { Section } from "../../@shared/components/Section";
-import { AccountsHistoryProvider, AccountsHistoryProviderContext } from "../../@shared/context/GetAccountsHistory";
+import { AccountsHistoryProviderContext } from "../../@shared/context/GetAccountsHistory";
+import { GetTodayAvaibleAccountProviderContext } from "../../@shared/context/GetTodayAvaibleAccount";
 
 type Props = {
     signature: SignatureType,
@@ -19,8 +20,9 @@ type Props = {
 export const Layout = ({ signature, setSignature }: Props) => {
     const [show, setShow] = useState(false);
     const { events } = useContext(EventProviderContext)
-    const { signatures, loading } = useContext(SignaturesProviderContext)
-    const { accounts, nextCurrentPage } = useContext(AccountsHistoryProviderContext);
+    const { signatures } = useContext(SignaturesProviderContext)
+    const { accounts } = useContext(AccountsHistoryProviderContext);
+    const { accountsAvaible, loading } = useContext(GetTodayAvaibleAccountProviderContext)
 
     useEffect(() => {
         if (signatures) {
@@ -29,12 +31,6 @@ export const Layout = ({ signature, setSignature }: Props) => {
 
         return () => { }
     }, [signatures])
-
-    // const handleScrollChanged = (e) => {
-    //     if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
-    //         nextCurrentPage();
-    //     }
-    // }
 
     return (
         <>
@@ -48,11 +44,9 @@ export const Layout = ({ signature, setSignature }: Props) => {
             />
 
             {signature && (<GenerateAccount signatureId={signature?.id} service={signature?.service.name} />)}
-
             <Section>
-                <Header title="Gerador de contas rockstar" button={{ children: 'Gerar conta', disabled: loading, onClick: () => { setShow(true) } }} />
+                <Header title="Gerador de contas rockstar" description={loading ? "Carregando..." : `Você tem apenas ${accountsAvaible} contas disponível para gerar hoje!`} button={{ children: 'Gerar conta', onClick: () => { setShow(true) } }} />
             </Section>
-            <button onClick={nextCurrentPage}>add mais</button>
             <Section>
                 <Header title="Histórico de contas geradas" />
                 <AccountsHistory icon={<SiFivem />} accounts={accounts} />

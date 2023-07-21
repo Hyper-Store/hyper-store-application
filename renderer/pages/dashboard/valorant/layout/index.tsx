@@ -1,18 +1,28 @@
 import { useContext, useEffect, useState } from "react";
+import { SignatureType } from "../../main/types/Signature.type";
 import { EventProviderContext } from "../../../../context/EventProvider.context";
 import { SignaturesProviderContext } from "../../@shared/context/Signatures.contex";
 import { ValidateService } from "../../@shared/components/ValidateService";
 import { Header } from "../../@shared/components/Header";
 import { ConfirmDialog } from "../../@shared/components/ConfirmDialog";
 import { GenerateAccount } from "../../@shared/components/GenerateAccount";
-import { SignatureType } from "../../main/types/Signature.type";
+import { AccountsHistory } from "../../@shared/components/AccountsHistory";
+import { SiFivem } from "react-icons/si";
+import { Section } from "../../@shared/components/Section";
+import { AccountsHistoryProviderContext } from "../../@shared/context/GetAccountsHistory";
+import { GetTodayAvaibleAccountProviderContext } from "../../@shared/context/GetTodayAvaibleAccount";
 
-export const Layout = () => {
+type Props = {
+    signature: SignatureType,
+    setSignature: (signature: SignatureType) => void
+}
 
+export const Layout = ({ signature, setSignature }: Props) => {
     const [show, setShow] = useState(false);
-    const [signature, setSignature] = useState<SignatureType>();
     const { events } = useContext(EventProviderContext)
-    const { signatures, loading } = useContext(SignaturesProviderContext)
+    const { signatures } = useContext(SignaturesProviderContext)
+    const { accounts } = useContext(AccountsHistoryProviderContext);
+    const { accountsAvaible, loading } = useContext(GetTodayAvaibleAccountProviderContext)
 
     useEffect(() => {
         if (signatures) {
@@ -22,11 +32,9 @@ export const Layout = () => {
         return () => { }
     }, [signatures])
 
-
     return (
         <>
             <ValidateService service="Valorant" />
-            <Header title="Gerador de contas valorant" button={{ children: 'Gerar conta', disabled: loading, onClick: () => { setShow(true) } }} />
             <ConfirmDialog show={show}
                 type="confirm"
                 title="Gerar conta valorant"
@@ -36,6 +44,13 @@ export const Layout = () => {
             />
 
             {signature && (<GenerateAccount signatureId={signature?.id} service={signature?.service.name} />)}
+            <Section>
+                <Header title="Gerador de contas valorant" description={loading ? "Carregando..." : `Você tem apenas ${accountsAvaible} contas disponível para gerar hoje!`} button={{ children: 'Gerar conta', onClick: () => { setShow(true) } }} />
+            </Section>
+            <Section>
+                <Header title="Histórico de contas geradas" />
+                <AccountsHistory icon={<SiFivem />} accounts={accounts} />
+            </Section>
         </>
     )
 }
