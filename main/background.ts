@@ -37,6 +37,7 @@ if (isProd) {
 
   if (isProd) {
     await mainWindow.loadURL('app://./home.html');
+    mainWindow.webContents.toggleDevTools()
   } else {
     const port = process.argv[2];
     await mainWindow.loadURL(`http://localhost:${port}/home`);
@@ -45,8 +46,6 @@ if (isProd) {
 })();
 
 app.on('ready', () => {
-  app.setName(process.env.PROJECT_NAME!)
-
   if (!app.isEmojiPanelSupported()) {
     dialog.showErrorBox('Houve um erro', 'Pareçe que seu computador não possui suporte para emojis, pode haver alguns problemas de fontes em seu computador, para mais informações acesse: https://discord.gg/hRzyVVWW3U')
   }

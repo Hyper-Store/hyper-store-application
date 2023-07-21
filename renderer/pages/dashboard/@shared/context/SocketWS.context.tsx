@@ -24,6 +24,8 @@ export const SocketWSProvider = ({ children }: { children: React.ReactNode }) =>
             }
         })
 
+        console.log(parseCookies().accessToken)
+
         socket.on('connect', () => {
             setSocketConnection(socket)
             console.log(chalk.green('[WEBSOCKET]'), 'Successfully connected to the server.')
