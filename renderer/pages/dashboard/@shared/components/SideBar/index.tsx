@@ -1,21 +1,12 @@
 import { SiValorant, SiFivem, SiTraefikproxy, SiHomeadvisor } from "react-icons/si"
 import { IoSettingsSharp } from 'react-icons/io5';
-import { ReactNode, useContext, useEffect, useState } from 'react';
-import { SideBarItemStyled, SideBarListStyled, SideBarStyled } from "./styles"
+import { useContext, useEffect, useState } from 'react';
 import { Tooltip } from "../../../../../components/Tooltip";
 import { useRouter } from "next/router";
-import { SocketWSProviderContext } from "../../context/SocketWS.context";
-import { SignatureType } from "../../../main/types/Signature.type";
-import { WSBinaryConverter } from "../../../../../utils/ws-binary-converter";
 import { SignaturesProviderContext } from "../../context/Signatures.contex";
-
-export type SideBarItems = {
-    icon: ReactNode,
-    title: string,
-    selected: boolean,
-    redirectURL: string
-    disabled: boolean,
-}
+import { v4 as randomUUID } from "uuid";
+import { SideBarItemProps, SideBarItem } from "./Item";
+import { SideBarListStyled, SideBarStyled } from "./styles";
 
 export type SideBarProps = {
     selected: number
@@ -27,8 +18,9 @@ export const SideBar = (props: SideBarProps) => {
 
     const { signatures, loading } = useContext(SignaturesProviderContext);
 
-    const [items, setItems] = useState<SideBarItems[]>([
+    const [items, setItems] = useState<SideBarItemProps[]>([
         {
+            id: randomUUID(),
             icon: <SiHomeadvisor />,
             title: 'Início',
             selected: false,
@@ -36,6 +28,7 @@ export const SideBar = (props: SideBarProps) => {
             disabled: false
         },
         {
+            id: randomUUID(),
             icon: <SiFivem />,
             title: 'Rockstar (FIVEM)',
             selected: false,
@@ -43,13 +36,15 @@ export const SideBar = (props: SideBarProps) => {
             disabled: true
         },
         {
+            id: randomUUID(),
             icon: <SiValorant />,
             title: 'Gerador valorant',
             selected: false,
             redirectURL: '/dashboard/valorant',
-            disabled: true
+            disabled: false
         },
         {
+            id: randomUUID(),
             icon: <SiTraefikproxy />,
             title: 'Gerador proxy',
             selected: false,
@@ -57,6 +52,7 @@ export const SideBar = (props: SideBarProps) => {
             disabled: true
         },
         {
+            id: randomUUID(),
             icon: <IoSettingsSharp />,
             title: 'Configurações',
             selected: false,
@@ -71,8 +67,14 @@ export const SideBar = (props: SideBarProps) => {
         let changed = items;
         changed[props.selected].selected = true;
 
-        if (signatures.find(s2 => s2.service.name === "Rockstar")) changed[1].disabled = false
-        if (signatures.find(s2 => s2.service.name === "Valorant")) changed[2].disabled = false
+        if (signatures.find(s2 => s2.service.name === "Rockstar")) {
+            changed[1].id = randomUUID();
+            changed[1].disabled = false;
+        }
+        if (signatures.find(s2 => s2.service.name === "Valorant")) {
+            changed[2].id = randomUUID();
+            changed[2].disabled = false
+        }
 
         setItems(changed);
 
@@ -85,11 +87,8 @@ export const SideBar = (props: SideBarProps) => {
         <SideBarStyled>
             <SideBarListStyled>
                 <Tooltip id="no-have-access" />
-                {items.map((item, index) => (
-                    <SideBarItemStyled selected={item.selected} disabled={item.disabled} onClick={() => { !item.disabled && push(item.redirectURL) }} key={index} {...(item.disabled && { 'data-tooltip-id': 'no-have-access', 'data-tooltip-content': `❌ Sem acesso ao ${item.title}` })}>
-                        {item.icon}
-                        {item.title}
-                    </SideBarItemStyled>
+                {items.map((item) => (
+                    <SideBarItem {...item} key={item.id} />
                 ))}
             </SideBarListStyled>
         </SideBarStyled>
