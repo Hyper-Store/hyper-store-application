@@ -16,7 +16,7 @@ export const SideBarItem = (props: SideBarItemProps) => {
     const { push } = useRouter();
 
     return (
-        <SideBarItemStyled key={props.id} disabled={props.disabled} selected={props.selected} onClick={() => { !props.disabled && push(props.redirectURL) }} {...(props.disabled && { 'data-tooltip-id': 'no-have-access', 'data-tooltip-content': `❌ Sem acesso ao ${props.title}` })}>
+        <SideBarItemStyled disabled={props.disabled} selected={props.selected} onClick={() => { !props.disabled && push(props.redirectURL) }} {...(props.disabled && { 'data-tooltip-id': 'no-have-access', 'data-tooltip-content': `❌ Sem acesso ao ${props.title}` })}>
             {props.icon}
             {props.title}
         </SideBarItemStyled>
