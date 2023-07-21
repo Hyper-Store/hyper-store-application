@@ -21,6 +21,7 @@
     "electron-store": "^8.1.0",
     "fs": "^0.0.1-security",
     "nextjs-progressbar": "^0.0.16",
+    "nookies": "^2.5.2",
     "react-bootstrap": "^2.8.0",
     "react-hook-form": "^7.45.1",
     "react-hot-toast": "^2.4.1",

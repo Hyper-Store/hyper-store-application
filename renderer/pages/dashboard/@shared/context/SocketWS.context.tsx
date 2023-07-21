@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import socket, { Socket, io } from 'socket.io-client';
 import { DefaultEventsMap } from 'socket.io/dist/typed-events';
+import { parseCookies } from 'nookies'
 
 interface EventProviderContextProps {
     socket: Socket<DefaultEventsMap, DefaultEventsMap>
@@ -18,7 +19,7 @@ export const SocketWSProvider = ({ children }: { children: React.ReactNode }) =>
     useEffect(() => {
         const socket = io('ws://localhost:1000', {
             query: {
-                accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIwOTE5NDI4NC1mOTk0LTQ5MDMtOTliZC1kMTY4M2E3YmFmNzciLCJjcmVhdGVkQXQiOiIyMDIzLTA3LTIwVDIyOjU3OjMxLjA5NFoiLCJpYXQiOjE2ODk4OTM4NTEsImV4cCI6MTY5MDEwOTg1MX0.PWARBefoMTTf7o7hQRYgGkM91fVz2dyO2CdhmIwKoYw'
+                accessToken: parseCookies().accessToken
             }
         })
 

@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { SocketWSProviderContext } from "../../context/SocketWS.context";
 import { SignatureType } from "../../../main/types/Signature.type";
 import { WSBinaryConverter } from "../../../../../utils/ws-binary-converter";
+import { SignaturesProviderContext } from "../../context/Signatures.contex";
 
 export type SideBarItems = {
     icon: ReactNode,
@@ -24,8 +25,8 @@ export const SideBar = (props: SideBarProps) => {
 
     const { push } = useRouter();
 
-    const [signatures, setSignatures] = useState<SignatureType[]>([]);
-    const { socket } = useContext(SocketWSProviderContext);
+    const { signatures, loading } = useContext(SignaturesProviderContext);
+
     const [items, setItems] = useState<SideBarItems[]>([
         {
             icon: <SiHomeadvisor />,
@@ -65,38 +66,27 @@ export const SideBar = (props: SideBarProps) => {
     ]
     );
 
+
     useEffect(() => {
-        if (!socket) return () => { };
-        socket.on('activated-signatures', ListenerSignaturesChanges);
-        socket.emit('retrieve-activated-signatures')
+        let changed = items;
+        changed[props.selected].selected = true;
+
+        if (signatures.find(s2 => s2.service.name === "Rockstar")) changed[1].disabled = false
+        if (signatures.find(s2 => s2.service.name === "Valorant")) changed[2].disabled = false
+
+        setItems(changed);
 
         return () => {
-            socket.off('activated-signatures');
-        };
-    }, [socket]);
-
-    const ListenerSignaturesChanges = (message: BinaryData) => {
-        const data = WSBinaryConverter(message);
-        setSignatures(data);
-        setItems(getAllItems());
-    }
-
-    const getAllItems = () => {
-        items[props.selected].selected = true
-        if (signatures.find(s2 => s2.service.name === "Rockstar")) items[1].disabled = false
-        if (signatures.find(s2 => s2.service.name === "Valorant")) items[2].disabled = false
-
-        setItems(items)
-        return items;
-    }
-
+            setItems(changed);
+        }
+    }, [signatures]);
 
     return (
         <SideBarStyled>
             <SideBarListStyled>
                 <Tooltip id="no-have-access" />
                 {items.map((item, index) => (
-                    <SideBarItemStyled onClick={() => { !item.disabled && push(item.redirectURL) }} {...item} key={index} {...(item.disabled && { 'data-tooltip-id': 'no-have-access', 'data-tooltip-content': `❌ Sem acesso ao ${item.title}` })}>
+                    <SideBarItemStyled selected={item.selected} disabled={item.disabled} onClick={() => { !item.disabled && push(item.redirectURL) }} key={index} {...(item.disabled && { 'data-tooltip-id': 'no-have-access', 'data-tooltip-content': `❌ Sem acesso ao ${item.title}` })}>
                         {item.icon}
                         {item.title}
                     </SideBarItemStyled>
