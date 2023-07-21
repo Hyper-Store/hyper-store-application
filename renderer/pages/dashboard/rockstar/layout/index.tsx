@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { BaseDashboard } from "../../@shared/components/BaseDashboard"
 import { SignatureType } from "../../main/types/Signature.type";
 import { EventProviderContext } from "../../../../context/EventProvider.context";
 import { SignaturesProviderContext } from "../../@shared/context/Signatures.contex";
@@ -10,12 +9,18 @@ import { GenerateAccount } from "../../@shared/components/GenerateAccount";
 import { AccountsHistory } from "../../@shared/components/AccountsHistory";
 import { SiFivem } from "react-icons/si";
 import { Section } from "../../@shared/components/Section";
+import { AccountsHistoryProvider, AccountsHistoryProviderContext } from "../../@shared/context/GetAccountsHistory";
 
-export const Layout = () => {
+type Props = {
+    signature: SignatureType,
+    setSignature: (signature: SignatureType) => void
+}
+
+export const Layout = ({ signature, setSignature }: Props) => {
     const [show, setShow] = useState(false);
-    const [signature, setSignature] = useState<SignatureType>();
     const { events } = useContext(EventProviderContext)
     const { signatures, loading } = useContext(SignaturesProviderContext)
+    const { accounts } = useContext(AccountsHistoryProviderContext);
 
     useEffect(() => {
         if (signatures) {
@@ -25,6 +30,7 @@ export const Layout = () => {
         return () => { }
     }, [signatures])
 
+    console.log('contas: ', accounts)
 
     return (
         <>
@@ -39,34 +45,12 @@ export const Layout = () => {
 
             {signature && (<GenerateAccount signatureId={signature?.id} service={signature?.service.name} />)}
 
-
             <Section>
                 <Header title="Gerador de contas rockstar" button={{ children: 'Gerar conta', disabled: loading, onClick: () => { setShow(true) } }} />
             </Section>
             <Section>
                 <Header title="Histórico de contas geradas" />
-                <AccountsHistory icon={<SiFivem />} accounts={[
-                    {
-                        value: 'contatodanielsilvaoficial@gmail.com',
-                        dateTimeRedeemed: new Date()
-                    },
-                    {
-                        value: 'contatodanielsilvaoficial@gmail.com',
-                        dateTimeRedeemed: new Date()
-                    },
-                    {
-                        value: 'contatodanielsilvaoficial@gmail.com',
-                        dateTimeRedeemed: new Date()
-                    },
-                    {
-                        value: 'contatodanielsilvaoficial@gmail.com',
-                        dateTimeRedeemed: new Date()
-                    },
-                    {
-                        value: 'contatodanielsilvaoficial@gmail.com',
-                        dateTimeRedeemed: new Date()
-                    }
-                ]} />
+                <AccountsHistory icon={<SiFivem />} accounts={accounts} />
             </Section>
         </>
     )

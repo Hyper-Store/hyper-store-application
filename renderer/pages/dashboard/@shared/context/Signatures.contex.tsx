@@ -1,6 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { Socket } from 'socket.io-client';
-import { DefaultEventsMap } from 'socket.io/dist/typed-events';
 import { SocketWSProviderContext } from './SocketWS.context';
 import { WSBinaryConverter } from '../../../../utils/ws-binary-converter';
 import { SignatureType } from '../../main/types/Signature.type';

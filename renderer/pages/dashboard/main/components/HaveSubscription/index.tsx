@@ -10,7 +10,6 @@ type Props = {
 }
 
 export const HaveSubscription = ({ signatures }: Props) => {
-    console.log(signatures)
     const signaturesCard: SignatureCardProps[] = signatures.map(s => {
         return {
             icon: iconsSignatures(signatures, s.service.name),

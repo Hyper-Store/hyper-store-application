@@ -3,3 +3,10 @@ export const WSBinaryConverter = (message: BinaryData) => {
     const json = JSON.parse(jsonString);
     return json;
 }
+
+export const WSBinaryCompile = (message: Object) => {
+    const jsonString = JSON.stringify(message);
+    const buffer = Buffer.from(jsonString);
+
+    return buffer;
+}
