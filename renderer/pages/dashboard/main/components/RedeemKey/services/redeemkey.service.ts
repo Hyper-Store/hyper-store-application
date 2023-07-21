@@ -1,9 +1,14 @@
 import { axios } from "../../../../../../utils/api";
 
 export type LoginServiceProps = {
-    key: string
+    key: String
+    accessToken: string
 }
 
 export const RedeemKeyService = async (props: LoginServiceProps) => {
-    return axios.post(`/keys/redeem/${props.key}`);
+    return axios.post(`/keys/redeem/${props.key}`, {}, {
+        headers: {
+            "Authorization": props.accessToken
+        }
+    });
 }

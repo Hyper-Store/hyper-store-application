@@ -8,6 +8,7 @@ import { WSBinaryConverter } from "../../../../../utils/ws-binary-converter";
 import { RedeemKeyOnSubmit } from "./events/onSubmit.event";
 import { RedemeedKey } from "./events/redemeedKey.event";
 import { EventProviderContext } from "../../../../../context/EventProvider.context";
+import { GetCurrentUserProviderContext } from "../../../@shared/context/GetCurrentUser";
 
 export const RedeemKey = () => {
 
@@ -15,6 +16,7 @@ export const RedeemKey = () => {
     const { handleSubmit, control, formState: { errors, isSubmitting }, } = useForm();
     const { socket } = useContext(SocketWSProviderContext);
     const { events } = useContext(EventProviderContext);
+    const { accessToken } = useContext(GetCurrentUserProviderContext);
 
     useEffect(() => {
         if (!socket) return () => { };
@@ -27,7 +29,7 @@ export const RedeemKey = () => {
 
     const onSubmit = handleSubmit(async (data) => {
         setLoading(true);
-        RedeemKeyOnSubmit({ events, data, setLoading });
+        RedeemKeyOnSubmit({ events, data, setLoading, accessToken });
     });
 
     const ListenerRedeemKey = (message: BinaryData) => {

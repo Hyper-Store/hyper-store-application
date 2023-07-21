@@ -7,6 +7,7 @@ import { EventProviderContext } from "../../../../../context/EventProvider.conte
 import { Form } from "../../../../../components/Form";
 import { CopyContent } from "../../utils/copyContent";
 import { GenereteAccountService } from "./services/generate-account.service";
+import { GetCurrentUserProviderContext } from "../../context/GetCurrentUser";
 
 type Props = {
     service: string,
@@ -16,9 +17,9 @@ type Props = {
 export const GenerateAccount = (props: Props) => {
     const [show, setShow] = useState<boolean>(false);
     const [account, setAccount] = useState<string>("");
+    const { accessToken } = useContext(GetCurrentUserProviderContext);
     const [status, setStatus] = useState<"idle" | "generating" | "error" | "outOfStockError" | "maxStockRedemptionReachedError" | "network" | "generated">("idle");
 
-    console.log(props.signatureId)
     const { events } = useContext(EventProviderContext)
 
     useEffect(() => {
@@ -34,7 +35,7 @@ export const GenerateAccount = (props: Props) => {
         setShow(true);
 
         try {
-            const request = await GenereteAccountService({ signatureId: props.signatureId })
+            const request = await GenereteAccountService({ accessToken, signatureId: props.signatureId })
 
             if (request.status === 201) {
                 setStatus('generated');

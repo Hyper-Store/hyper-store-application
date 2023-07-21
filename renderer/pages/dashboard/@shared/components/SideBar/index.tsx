@@ -8,6 +8,7 @@ import { v4 as randomUUID } from "uuid";
 import { SideBarItemProps, SideBarItem } from "./Item";
 import { SideBarListStyled, SideBarProctedBy, SideBarStyled } from "./styles";
 import { BsGoogle } from "react-icons/bs";
+import { BiLogOut } from "react-icons/bi";
 
 export type SideBarProps = {
     selected: number
@@ -46,18 +47,18 @@ export const SideBar = (props: SideBarProps) => {
         },
         {
             id: randomUUID(),
-            icon: <SiTraefikproxy />,
-            title: 'Gerador proxy',
-            selected: false,
-            redirectURL: '/auth/login',
-            disabled: false
-        },
-        {
-            id: randomUUID(),
             icon: <IoSettingsSharp />,
             title: 'Configurações',
             selected: false,
             redirectURL: '/dashboard/settings',
+            disabled: false
+        },
+        {
+            id: randomUUID(),
+            icon: <BiLogOut />,
+            title: 'Logout',
+            selected: false,
+            redirectURL: '/auth/logout',
             disabled: false
         }
     ]

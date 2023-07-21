@@ -6,12 +6,13 @@ import EventEmitter from "events";
 type Props = {
     events: EventEmitter
     data: any,
-    setLoading: (loading: boolean) => void
+    setLoading: (loading: boolean) => void,
+    accessToken: string
 }
 
-export const RedeemKeyOnSubmit = async ({ events, data, setLoading }: Props) => {
+export const RedeemKeyOnSubmit = async ({ events, data, setLoading, accessToken }: Props) => {
     try {
-        const request = await RedeemKeyService(data);
+        const request = await RedeemKeyService({ key: data.key, accessToken });
 
         if (request.status === 201) return;
 
