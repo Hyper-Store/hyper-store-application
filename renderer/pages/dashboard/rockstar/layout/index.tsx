@@ -30,11 +30,11 @@ export const Layout = ({ signature, setSignature }: Props) => {
         return () => { }
     }, [signatures])
 
-    const handleScrollChanged = (e) => {
-        if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
-            nextCurrentPage();
-        }
-    }
+    // const handleScrollChanged = (e) => {
+    //     if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
+    //         nextCurrentPage();
+    //     }
+    // }
 
     return (
         <>
@@ -52,7 +52,8 @@ export const Layout = ({ signature, setSignature }: Props) => {
             <Section>
                 <Header title="Gerador de contas rockstar" button={{ children: 'Gerar conta', disabled: loading, onClick: () => { setShow(true) } }} />
             </Section>
-            <Section onScroll={handleScrollChanged}>
+            <button onClick={nextCurrentPage}>add mais</button>
+            <Section>
                 <Header title="Histórico de contas geradas" />
                 <AccountsHistory icon={<SiFivem />} accounts={accounts} />
             </Section>
