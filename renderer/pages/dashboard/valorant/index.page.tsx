@@ -4,21 +4,30 @@ import { Header } from "../@shared/components/Header";
 import { ConfirmDialog } from "../@shared/components/ConfirmDialog";
 import { GenerateAccount } from "../@shared/components/GenerateAccount";
 import { EventProviderContext } from "../../../context/EventProvider.context";
-import { useRouter } from "next/router";
-import { SignaturesProviderContext } from "../@shared/context/Signatures.contex";
-import toast from "react-hot-toast";
 import { ValidateService } from "../@shared/components/ValidateService";
+import { SignaturesProviderContext } from "../@shared/context/Signatures.contex";
+import { SignatureType } from "../main/types/Signature.type";
 
 export default function DashboardValorant() {
 
     const [show, setShow] = useState(false);
     const { events } = useContext(EventProviderContext)
+    const { signatures, loading } = useContext(SignaturesProviderContext)
+    let signature: SignatureType
+
+    useEffect(() => {
+        if (signatures) {
+            signature = signatures.find(s => s.service.name === "Valorant");
+        }
+
+        return () => { }
+    }, [signatures])
 
     return (
         <>
             <BaseDashboard selected={2}>
                 <ValidateService service="Valorant" />
-                <Header title="Gerador de contas valorant" button={{ children: 'Gerar conta', onClick: () => { setShow(true) } }} />
+                <Header title="Gerador de contas valorant" button={{ children: 'Gerar conta', disabled: loading, onClick: () => { setShow(true) } }} />
                 <ConfirmDialog show={show}
                     type="confirm"
                     title="Gerar conta valorant"
@@ -27,7 +36,7 @@ export default function DashboardValorant() {
                     onSubmit={() => { events.emit('generateAccount') }}
                 />
 
-                <GenerateAccount service="valorant" />
+                {!loading && (<GenerateAccount signatureId={signature?.id} service={signature?.service.name} />)}
             </BaseDashboard>
         </>
     )

@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 import { SignaturesProviderContext } from "../../context/Signatures.contex";
 import { v4 as randomUUID } from "uuid";
 import { SideBarItemProps, SideBarItem } from "./Item";
-import { SideBarListStyled, SideBarStyled } from "./styles";
+import { SideBarListStyled, SideBarProctedBy, SideBarStyled } from "./styles";
+import { BsGoogle } from "react-icons/bs";
 
 export type SideBarProps = {
     selected: number
@@ -91,6 +92,7 @@ export const SideBar = (props: SideBarProps) => {
                     <SideBarItem {...item} key={item.id} />
                 ))}
             </SideBarListStyled>
+            <SideBarProctedBy><BsGoogle /> Verificado pelo: <span>GOOGLE INC</span></SideBarProctedBy>
         </SideBarStyled>
     )
 }

@@ -6,9 +6,11 @@ import { BsCheckCircle } from 'react-icons/bs';
 import { EventProviderContext } from "../../../../../context/EventProvider.context";
 import { Form } from "../../../../../components/Form";
 import { CopyContent } from "../../utils/copyContent";
+import { GenereteAccountService } from "./services/generate-account.service";
 
 type Props = {
-    service: "rockstar" | "valorant"
+    service: string,
+    signatureId: string
 }
 
 export const GenerateAccount = (props: Props) => {
@@ -26,13 +28,12 @@ export const GenerateAccount = (props: Props) => {
         };
     }, []);
 
-    const handleGenerateAccount = () => {
+    const handleGenerateAccount = async () => {
         setStatus("generating");
         setShow(true);
-        setTimeout(() => {
-            setStatus("generated");
-            setAccount('contatodanielsilvaoficial@gmail.com:senhsenha');
-        }, 1500);
+
+        const request = await GenereteAccountService({ signatureId: props.signatureId })
+        console.log(request)
     }
 
     const handleCopy = () => {
