@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { Account, AccountDetails, AccountDetailsDate, AccountDetailsValue, AccountIcon, AccountLeft, AccountRight, ListAccounts } from './styles';
 import { Button } from '../../../../../components/Form/Button';
-import { BiCopy } from 'react-icons/bi';
+import { BiCheck, BiCopy } from 'react-icons/bi';
 import { CopyContent } from '../../utils/copyContent';
 
 export type AccountsType = {
@@ -26,7 +26,7 @@ export const AccountsHistory = (props: Props) => {
     return (
         <ListAccounts>
             {props.accounts.map((a, i) => (
-                <Account>
+                <Account key={i}>
                     <AccountLeft>
                         <AccountIcon>{props.icon}</AccountIcon>
                         <AccountDetails>

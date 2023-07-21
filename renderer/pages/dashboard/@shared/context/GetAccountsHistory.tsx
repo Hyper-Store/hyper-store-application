@@ -33,8 +33,6 @@ export const AccountsHistoryProvider = ({ children, signatureId }: AccountsHisto
                 signatureId,
                 page: currentPage
             }))
-
-            console.log('emitod com sucesso ')
         }
 
         return () => { }
@@ -44,6 +42,7 @@ export const AccountsHistoryProvider = ({ children, signatureId }: AccountsHisto
         const data = WSBinaryConverter(message);
         if (data.length < 1) return setAlreadyLimited(true);
         setAccounts([...accounts, ...data]);
+        console.log([...accounts, ...data])
         setLoading(false);
     }
 
@@ -65,6 +64,7 @@ export const AccountsHistoryProvider = ({ children, signatureId }: AccountsHisto
         updateList();
         setCurrentPage(currentPage + 1);
     }
+
 
     return (
         <AccountsHistoryProviderContext.Provider value={{ accounts, loading, previousCurrentPage, nextCurrentPage }}>{children}</AccountsHistoryProviderContext.Provider>
