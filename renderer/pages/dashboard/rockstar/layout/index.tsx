@@ -7,6 +7,9 @@ import { ValidateService } from "../../@shared/components/ValidateService";
 import { Header } from "../../@shared/components/Header";
 import { ConfirmDialog } from "../../@shared/components/ConfirmDialog";
 import { GenerateAccount } from "../../@shared/components/GenerateAccount";
+import { AccountsHistory } from "../../@shared/components/AccountsHistory";
+import { SiFivem } from "react-icons/si";
+import { Section } from "../../@shared/components/Section";
 
 export const Layout = () => {
     const [show, setShow] = useState(false);
@@ -26,7 +29,6 @@ export const Layout = () => {
     return (
         <>
             <ValidateService service="Rockstar" />
-            <Header title="Gerador de contas rockstar" button={{ children: 'Gerar conta', disabled: loading, onClick: () => { setShow(true) } }} />
             <ConfirmDialog show={show}
                 type="confirm"
                 title="Gerar conta rockstar"
@@ -36,6 +38,36 @@ export const Layout = () => {
             />
 
             {signature && (<GenerateAccount signatureId={signature?.id} service={signature?.service.name} />)}
+
+
+            <Section>
+                <Header title="Gerador de contas rockstar" button={{ children: 'Gerar conta', disabled: loading, onClick: () => { setShow(true) } }} />
+            </Section>
+            <Section>
+                <Header title="Histórico de contas geradas" />
+                <AccountsHistory icon={<SiFivem />} accounts={[
+                    {
+                        value: 'contatodanielsilvaoficial@gmail.com',
+                        dateTimeRedeemed: new Date()
+                    },
+                    {
+                        value: 'contatodanielsilvaoficial@gmail.com',
+                        dateTimeRedeemed: new Date()
+                    },
+                    {
+                        value: 'contatodanielsilvaoficial@gmail.com',
+                        dateTimeRedeemed: new Date()
+                    },
+                    {
+                        value: 'contatodanielsilvaoficial@gmail.com',
+                        dateTimeRedeemed: new Date()
+                    },
+                    {
+                        value: 'contatodanielsilvaoficial@gmail.com',
+                        dateTimeRedeemed: new Date()
+                    }
+                ]} />
+            </Section>
         </>
     )
 }
