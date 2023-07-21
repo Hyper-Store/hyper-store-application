@@ -3,7 +3,7 @@ import { SignatureType } from "../../main/types/Signature.type"
 import { SiFivem, SiValorant } from "react-icons/si"
 import { BiBox } from "react-icons/bi"
 
-export const IconsSignatures = (signatures: SignatureType[], serviceName: string): SignatureCardProps["icon"] => {
+export const iconsSignatures = (signatures: SignatureType[], serviceName: string): SignatureCardProps["icon"] => {
 
     const serviceFind = signatures.find(s => s.service.name === serviceName)
 

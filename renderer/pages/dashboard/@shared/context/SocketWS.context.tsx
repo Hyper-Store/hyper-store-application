@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import socket, { Socket, io } from 'socket.io-client';
 import { DefaultEventsMap } from 'socket.io/dist/typed-events';
 import { parseCookies } from 'nookies'
+import chalk from 'chalk';
 
 interface EventProviderContextProps {
     socket: Socket<DefaultEventsMap, DefaultEventsMap>
@@ -25,11 +26,12 @@ export const SocketWSProvider = ({ children }: { children: React.ReactNode }) =>
 
         socket.on('connect', () => {
             setSocketConnection(socket)
-            console.log('Successfully connected to the server.');
+            console.log(chalk.green('[WEBSOCKET]'), 'Successfully connected to the server.')
         });
 
         socket.on('disconnect', () => {
             push('/auth/login');
+            console.log(chalk.red('[WEBSOCKET]'), 'Disconnected from the server.')
             toast.error('Sua sessão foi desconectada, faça login novamente...')
         })
 

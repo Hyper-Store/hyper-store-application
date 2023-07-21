@@ -1,5 +1,5 @@
-import { ContainerStyled } from "./styles"
 import { ReactNode } from 'react';
+import { Container as ContainerStyled } from 'react-bootstrap';
 
 type ContainerProps = {
     children: ReactNode

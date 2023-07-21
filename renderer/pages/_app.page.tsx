@@ -9,14 +9,23 @@ import { ThemeProvider } from '../context/ThemeProvider.context';
 import { NavBar } from '../components/Navbar';
 import { GlobalStyle } from '../styles/globals';
 import { Container } from '../components/Container';
-import { Router } from 'next/router';
 import { ToastContainer } from '../components/ToastContainer';
 import Head from 'next/head';
 import { EventProvider } from '../context/EventProvider.context';
 import { ModalDialog } from './dashboard/@shared/components/ModalDialog';
+import chalk from 'chalk';
 
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+
+    useEffect(() => {
+        console.clear();
+        console.log(chalk.green('💚 Hyper store disse:'), 'Estou de olho em você...')
+        console.log(chalk.green('💚 Hyper store disse:'), 'Por favor, evite compartilhar informações sensíveis com seus amigos, como cookies, local storage e outros dados pessoais, pois isso pode representar um risco para sua segurança.')
+        console.log(chalk.green('💚 Hyper store disse:'), 'Suas ações foram registradas e nossa equipe de administração foi notificada por motivos de segurança!')
+        console.log(chalk.green('💚 Hyper store disse:'), 'Caso tente violar a segurança de nosso aplicativo, você estará sujeito a banimento permanente e exclusão de conta!')
+    }, [])
+
     return (
         <>
             <Head>

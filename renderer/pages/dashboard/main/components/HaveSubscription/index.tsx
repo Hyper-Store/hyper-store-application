@@ -3,7 +3,7 @@ import { HaveSubscriptionStyled, RowStyled, SectionStyled } from "./styles"
 import { SignatureCard, SignatureCardProps } from "./SignatureCard"
 import { RedeemKey } from "../RedeemKey"
 import { SignatureType } from "../../types/Signature.type"
-import { IconsSignatures } from "../../../@shared/utils/iconsSignatures"
+import { iconsSignatures } from "../../../@shared/utils/iconsSignatures"
 
 type Props = {
     signatures: SignatureType[]
@@ -13,7 +13,7 @@ export const HaveSubscription = ({ signatures }: Props) => {
     console.log(signatures)
     const signaturesCard: SignatureCardProps[] = signatures.map(s => {
         return {
-            icon: IconsSignatures(signatures, s.service.name),
+            icon: iconsSignatures(signatures, s.service.name),
             title: s.service.name,
             expireIn: new Date(s.expirationDate)
         }

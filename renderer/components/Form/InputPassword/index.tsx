@@ -13,7 +13,7 @@ export const InputPassword = (props: Props) => {
     return (
         <InputPasswordStyled>
             <InputPasswordInput {...props} type={show ? "password" : "text"} />
-            <InputPasswordButton>
+            <InputPasswordButton onClick={() => { setShow(!show) }}>
                 {show && (<BsEyeFill />)}
                 {!show && (<BsEyeSlashFill />)}
             </InputPasswordButton>

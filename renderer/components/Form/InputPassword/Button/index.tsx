@@ -6,6 +6,6 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement>
 export const InputPasswordButton = (props: Props) => {
 
     return (
-        <InputPasswordButtonStyled {...props}>{props.children}</InputPasswordButtonStyled>
+        <InputPasswordButtonStyled {...props} type="button">{props.children}</InputPasswordButtonStyled>
     )
 }
