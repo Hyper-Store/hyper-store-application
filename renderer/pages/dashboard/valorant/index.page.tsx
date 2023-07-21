@@ -10,7 +10,7 @@ export default function DashboardValorant() {
 
     return (
         <>
-            <BaseDashboard selected={1}>
+            <BaseDashboard selected={2}>
                 <AccountsHistoryProvider signatureId={signature?.id}>
                     <GetTodayAvaibleAccountProvider signatureId={signature?.id}>
                         <Layout signature={signature} setSignature={setSignature} />
