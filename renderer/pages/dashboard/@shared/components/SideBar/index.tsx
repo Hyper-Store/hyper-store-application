@@ -34,7 +34,7 @@ export const SideBar = (props: SideBarProps) => {
             title: 'Rockstar (FIVEM)',
             selected: false,
             redirectURL: '/dashboard/rockstar',
-            disabled: true
+            disabled: false
         },
         {
             id: randomUUID(),
@@ -50,7 +50,7 @@ export const SideBar = (props: SideBarProps) => {
             title: 'Gerador proxy',
             selected: false,
             redirectURL: '/auth/login',
-            disabled: true
+            disabled: false
         },
         {
             id: randomUUID(),
