@@ -18,13 +18,11 @@ export const SocketWSProvider = ({ children }: { children: React.ReactNode }) =>
     const { push } = useRouter();
 
     useEffect(() => {
-        const socket = io('ws://localhost:1000', {
+        const socket = io('ws://api.leinadhosting.app/websocket', {
             query: {
-                accessToken: parseCookies().accessToken
+                accessToken: localStorage.getItem('accessToken')
             }
         })
-
-        console.log(parseCookies().accessToken)
 
         socket.on('connect', () => {
             setSocketConnection(socket)

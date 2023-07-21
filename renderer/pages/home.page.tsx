@@ -6,7 +6,11 @@ function Home() {
   const { push } = useRouter();
 
   useEffect(() => {
-    push('/auth/login')
+    if (localStorage.getItem('accessToken')) {
+      push('/dashboard/main')
+    } else {
+      push('/auth/login')
+    }
   }, [])
 
   return (

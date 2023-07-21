@@ -16,7 +16,8 @@ export default function AuthLoginPage() {
 
             if (request.status === 201) {
                 toast.success('Conta criada com sucesso, estamos te rendirecionando para outra página!', { duration: 10000 })
-
+                localStorage.setItem('accessToken', request.data.accessToken);
+                localStorage.setItem('refreshToken', request.data.refreshToken);
                 await push('/dashboard/main');
                 return;
             }

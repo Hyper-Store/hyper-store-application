@@ -11,13 +11,13 @@ export default function AuthLoginPage() {
     const { push } = useRouter();
 
     const onSubmit = handleSubmit(async (data: LoginServiceProps) => {
-
         try {
             const request = await LoginService(data);
 
             if (request.status === 200) {
                 toast.success('Logado com sucesso sucesso, estamos te rendirecionando para outra página!', { duration: 10000 })
-
+                localStorage.setItem('accessToken', request.data.accessToken);
+                localStorage.setItem('refreshToken', request.data.refreshToken);
                 await push('/dashboard/main');
                 return;
             }
