@@ -92,7 +92,7 @@ export const SideBar = (props: SideBarProps) => {
                     <SideBarItem {...item} key={item.id} />
                 ))}
             </SideBarListStyled>
-            <SideBarProctedBy><BsGoogle /> Verificado pelo: <span>GOOGLE INC</span></SideBarProctedBy>
+            <SideBarProctedBy><BsGoogle /> Verificado pelo: <span>DISCORD INC</span></SideBarProctedBy>
         </SideBarStyled>
     )
 }
