@@ -37,7 +37,6 @@ if (isProd) {
 
   if (isProd) {
     await mainWindow.loadURL('app://./home.html');
-    mainWindow.webContents.toggleDevTools()
   } else {
     const port = process.argv[2];
     await mainWindow.loadURL(`http://localhost:${port}/home`);

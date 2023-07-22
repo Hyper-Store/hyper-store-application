@@ -67,7 +67,6 @@ export const SideBar = (props: SideBarProps) => {
 
     useEffect(() => {
         let changed = items;
-        changed[props.selected].selected = true;
 
         if (signatures.find(s2 => s2.service.name === "Rockstar")) {
             changed[1].id = randomUUID();
@@ -84,6 +83,12 @@ export const SideBar = (props: SideBarProps) => {
             setItems(changed);
         }
     }, [signatures]);
+
+    useEffect(() => {
+        let changed = items
+        items[props.selected].selected = true;
+        setItems(changed);
+    }, [props.selected])
 
     return (
         <SideBarStyled>
