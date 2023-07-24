@@ -19,7 +19,7 @@ if (isProd) {
     darkTheme: true,
     show: true,
     autoHideMenuBar: true,
-    frame: false,
+    frame: true,
     width: 900,
     height: 500,
     minWidth: 900,

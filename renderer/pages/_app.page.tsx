@@ -35,7 +35,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <ThemeProvider>
                     <Container>
                         <ToastContainer />
-                        <NavBar />
                         <GlobalStyle />
                         <ModalDialog />
                         <Loading />
