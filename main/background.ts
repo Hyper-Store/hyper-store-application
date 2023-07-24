@@ -2,6 +2,11 @@ import { app, dialog, autoUpdater, Response } from 'electron';
 import 'dotenv/config';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
+import squirrelStartup from 'electron-squirrel-startup'
+
+if (squirrelStartup) {
+  app.quit();
+}
 
 const isProd: boolean = process.env.NODE_ENV === 'production';
 
@@ -50,8 +55,11 @@ app.on('ready', () => {
   }
 })
 
+
 app.on('ready', () => {
+  autoUpdater.setFeedURL({ url: `https://github.com/Hyper-Store/hyper-store-applications-update/releases/download/update`, });
   autoUpdater.checkForUpdates();
+
   autoUpdater.on('update-available', async () => {
     await dialog.showMessageBox({
       type: 'info',
@@ -83,5 +91,3 @@ app.on('ready', () => {
 app.on('window-all-closed', () => {
   app.quit();
 });
-
-autoUpdater.setFeedURL({ url: 'https://github.com/Hyper-Store/hyper-store-applications-update/releases/download/update/' });
