@@ -19,9 +19,14 @@ publish:
   publishAutoUpdate: true
   protocol: https
   host: github.com
-  token: 
+  token: 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
 
 nsis:
   differentialPackage: true
+
+win:
+  publish:
+    - github
+    - bitbucket
 
 electronUpdaterCompatibility: 2.24.0

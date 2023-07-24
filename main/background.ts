@@ -1,5 +1,5 @@
 import { app, dialog, Response, autoUpdater } from 'electron';
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 import squirrelStartup from 'electron-squirrel-startup'
@@ -8,6 +8,7 @@ if (squirrelStartup) {
   app.quit();
 }
 
+dotenv.config();
 const isProd: boolean = process.env.NODE_ENV === 'production';
 
 if (isProd) {
