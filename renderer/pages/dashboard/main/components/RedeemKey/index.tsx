@@ -38,6 +38,9 @@ export const RedeemKey = () => {
         setLoading(false);
     }
 
+    const onClickBuy = () => {
+    }
+
     return (
         <>
             <Form.Root onSubmit={onSubmit}>
@@ -49,7 +52,7 @@ export const RedeemKey = () => {
                     {errors.key && (<Form.Error>{errors.key.message as string}</Form.Error>)}
                 </Form.Control>
             </Form.Root>
-            <Form.Button>🛒 Comprar agora</Form.Button>
+            <Form.Button onClick={onClickBuy}>🛒 Comprar agora</Form.Button>
         </>
     )
 }

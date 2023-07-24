@@ -44,7 +44,7 @@ export const About = styled.div`
 `
 
 export const Description = styled.p`
-    font-size: 0.6rem;
+    font-size: 0.68rem;
     color: ${props => props.theme.texts.subtitle};
     margin-bottom: 0;
 `

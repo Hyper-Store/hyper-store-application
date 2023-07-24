@@ -12,6 +12,12 @@ export type SignatureCardProps = {
 }
 
 export const SignatureCard = (props: SignatureCardProps) => {
+
+    const expireDate = new Date(props.expireIn);
+    const currentDate = new Date();
+    const differenceInMilliseconds = expireDate.getTime() - currentDate.getTime();
+    const daysRemaining = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+
     return (
         <Col md={12}>
             <SignatureCardStyled>
@@ -19,7 +25,7 @@ export const SignatureCard = (props: SignatureCardProps) => {
                 <Details>
                     <Title>{props.title}</Title>
                     <About>
-                        <Description>Expira em: <code>{props.expireIn.toDateString()}</code></Description>
+                        <Description>Expira em: <code>{expireDate.toLocaleString()}</code>({daysRemaining})</Description>
                         <Description>Status: <code>Ativo</code></Description>
                     </About>
                 </Details>

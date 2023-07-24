@@ -1,8 +1,9 @@
-import { app, dialog, Response, autoUpdater } from 'electron';
+import { app, dialog, shell, ipcMain } from 'electron';
 import dotenv from 'dotenv';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 import squirrelStartup from 'electron-squirrel-startup'
+import path from 'path';
 
 if (squirrelStartup) {
   app.quit();
@@ -42,7 +43,7 @@ if (isProd) {
   });
 
   if (isProd) {
-    await mainWindow.loadURL('app://./home.html');
+    await mainWindow.loadURL(path.join('app://./home.html'));
   } else {
     const port = process.argv[2];
     await mainWindow.loadURL(`http://localhost:${port}/home`);
