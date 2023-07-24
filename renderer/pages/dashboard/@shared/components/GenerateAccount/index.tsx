@@ -55,7 +55,6 @@ export const GenerateAccount = (props: Props) => {
 
             setStatus('error');
         } catch (error) {
-            console.log(error)
             setStatus('network');
         }
     }
