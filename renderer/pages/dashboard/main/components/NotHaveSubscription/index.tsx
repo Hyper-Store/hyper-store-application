@@ -13,7 +13,7 @@ export const NotHaveSubscription = () => {
     return (
         <NotHaveSubscriptionStyled>
             <IconStyled><BiErrorCircle /></IconStyled>
-            <TitleStyled>👋 Olá {username} funfando, Seja Bem-Vindo(a)!</TitleStyled>
+            <TitleStyled>👋 Olá {username}, Seja Bem-Vindo(a)!</TitleStyled>
             <DescriptionStyled>Eu indentifiquei que você não possui nenhuma assinatura em nosso serviço, mais sem problemas! Você pode assinar agora utilizando uma key que você tenha em mãos ou você pode adquirir uma em nosso discord!</DescriptionStyled>
             <RedeemKey />
         </NotHaveSubscriptionStyled>
