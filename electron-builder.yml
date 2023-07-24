@@ -19,6 +19,7 @@ publish:
   publishAutoUpdate: true
   protocol: https
   host: github.com
+  token: 
 
 nsis:
   differentialPackage: true
