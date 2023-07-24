@@ -13,8 +13,14 @@ files:
 
 publish:
   provider: github
+  repo: https://github.com/Hyper-Store/hyper-store-applications-update/releases/download/update
   releaseType: draft
+  owner: Daniel-D3V
   publishAutoUpdate: true
+  protocol: https
+  host: github.com
 
 nsis:
   differentialPackage: true
+
+electronUpdaterCompatibility: 2.24.0

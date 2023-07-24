@@ -2,7 +2,7 @@
   "private": true,
   "name": "hyper-store-application",
   "description": "Hyper Store - Gerador e Checker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Kafka#5337",
   "main": "app/background.js",
   "scripts": {
