@@ -1,4 +1,4 @@
-import { app, dialog } from 'electron';
+import { app, dialog, autoUpdater, Response } from 'electron';
 import 'dotenv/config';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
@@ -29,7 +29,7 @@ if (isProd) {
     movable: true,
     backgroundColor: '#101010',
     webPreferences: {
-      devTools: true,
+      devTools: false,
       nodeIntegration: true,
       contextIsolation: false
     }
@@ -40,7 +40,7 @@ if (isProd) {
   } else {
     const port = process.argv[2];
     await mainWindow.loadURL(`http://localhost:${port}/home`);
-    mainWindow.webContents.toggleDevTools()
+    // mainWindow.webContents.toggleDevTools()
   }
 })();
 
@@ -50,6 +50,38 @@ app.on('ready', () => {
   }
 })
 
+app.on('ready', () => {
+  autoUpdater.checkForUpdates();
+  autoUpdater.on('update-available', async () => {
+    await dialog.showMessageBox({
+      type: 'info',
+      buttons: ['OK'],
+      defaultId: 0,
+      title: 'Atualização Necessária',
+      message: 'Uma nova versão do aplicativo está disponível. A atualização é obrigatória para continuar utilizando o aplicativo.',
+      detail: 'O aplicativo será reiniciado após a atualização.',
+    })
+
+    app.quit();
+  });
+
+  autoUpdater.on('error', (error) => {
+    dialog.showErrorBox('Erro na atualização', 'Houve um erro ao tentar atualizar o aplicativo, tente reinstalar ou caso não consiga entre em contato com o suporte na Hyper Store!')
+  });
+
+  autoUpdater.on('update-downloaded', () => {
+    dialog.showMessageBox({
+      type: 'info',
+      buttons: ['OK'],
+      defaultId: 0,
+      title: 'Atualização em andamento',
+      message: 'O aplicativo já está sendo atualizado, fique tranquilo assim que pronto ele vai estar disponível para abrir novamente!',
+    })
+  });
+})
+
 app.on('window-all-closed', () => {
   app.quit();
 });
+
+autoUpdater.setFeedURL({ url: 'https://github.com/Hyper-Store/hyper-store-applications-update/releases/download/update/' });

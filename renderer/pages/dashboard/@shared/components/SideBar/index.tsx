@@ -84,11 +84,7 @@ export const SideBar = (props: SideBarProps) => {
         }
     }, [signatures]);
 
-    useEffect(() => {
-        let changed = items
-        items[props.selected].selected = true;
-        setItems(changed);
-    }, [props.selected])
+    items[props.selected].selected = true;
 
     return (
         <SideBarStyled>
