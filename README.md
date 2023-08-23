@@ -1,38 +1,48 @@
-<p align="center"><img src="https://i.imgur.com/NZfsD1p.png"></p>
+# 💗 Gerador de contas rockstar
+This is an account generator project, basically you add the accounts to the **back-end** server and then you can generate an account through the panel, for this you generate an access key and that's it.
 
-## Usage
+## **❤️ Languages:** `Typescript`, `Javascript`
 
-### Create an App
+## **💥 Technologies**: `Nextjs`, `Electron`, `WebSocket`
 
+## 💻 Requirements
+
+* Have Node.JS version `18.0.0` or newer
+* Have `visual studio` or any other code editor installed
+
+## 🚀 Installation (HWID-SPOOFER)
+
+To install hwid spoofer, follow these steps:
+
+**Windows, Linux and macOS:**
 ```
-# with npx
-$ npx create-nextron-app my-app --example basic-typescript
-
-# with yarn
-$ yarn create nextron-app my-app --example basic-typescript
-
-# with pnpx
-$ pnpx create-nextron-app my-app --example basic-typescript
-```
-
-### Install Dependencies
-
-```
-$ cd my-app
-
-# using yarn or npm
-$ yarn (or `npm install`)
-
-# using pnpm
-$ pnpm install --shamefully-hoist
+git clone https://github.com/Hyper-Store/hyper-store-application.git
 ```
 
-### Use it
+## 💾 Running (HWID-SPOOFER)
 
-```
-# development mode
-$ yarn dev (or `npm run dev` or `pnpm run dev`)
+To start the project follow the instructions below:
 
-# production build
-$ yarn build (or `npm run build` or `pnpm run build`)
+**Installing dependencies:**
 ```
+npm install
+```
+
+**Starting**
+```
+npm run dev
+```
+
+## 🤝 Collaborators
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Daniel-D3V">
+        <img src="https://avatars.githubusercontent.com/u/103064271?v=4" width="100px;" alt="Daniel Silva"/><br>
+        <sub>
+          <b>Daniel Silva</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
