@@ -1,9 +1,9 @@
 # 💗 Gerador de contas rockstar
 This is an account generator project, basically you add the accounts to the **back-end** server and then you can generate an account through the panel, for this you generate an access key and that's it.
 
-## **❤️ Languages:** `Typescript`, `Javascript`
+#### **❤️ Languages:** `Typescript`, `Javascript`
 
-## **💥 Technologies**: `Nextjs`, `Electron`, `WebSocket`
+#### **💥 Technologies**: `Nextjs`, `Electron`, `WebSocket`
 
 ## 💻 Requirements
 
