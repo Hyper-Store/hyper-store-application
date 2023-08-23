@@ -19,6 +19,10 @@ To install hwid spoofer, follow these steps:
 git clone https://github.com/Hyper-Store/hyper-store-application.git
 ```
 
+```
+cd hyper-store-application
+```
+
 ## 💾 Running (HWID-SPOOFER)
 
 To start the project follow the instructions below:
