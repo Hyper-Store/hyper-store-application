@@ -10,9 +10,9 @@ This is an account generator project, basically you add the accounts to the **ba
 * Have Node.JS version `18.0.0` or newer
 * Have `visual studio` or any other code editor installed
 
-## 🚀 Installation (HWID-SPOOFER)
+## 🚀 Installation (Application)
 
-To install hwid spoofer, follow these steps:
+To install project, follow these steps:
 
 **Windows, Linux and macOS:**
 ```
@@ -23,7 +23,7 @@ git clone https://github.com/Hyper-Store/hyper-store-application.git
 cd hyper-store-application
 ```
 
-## 💾 Running (HWID-SPOOFER)
+## 💾 Running (Application)
 
 To start the project follow the instructions below:
 
